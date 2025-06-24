@@ -1,0 +1,31 @@
+# Ignorer les profils Chrome et les données temporaires/cache des applications
+# Si le dossier Streamlit_bots_app est juste au-dessus ou à côté de votre repo,
+# ces règles s'assureront que ces éléments sont ignorés.
+Streamlit_bots_app/
+Xbot - Copy/
+chrome_profile/
+Service Worker/
+CacheStorage/
+Application Cache/
+IndexedDB/
+Local Storage/
+Session Storage/
+UserData/
+tmp/
+temp/
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers spécifiques à l'OS (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de compilation ou de dépendances courants
+build/
+dist/
+node_modules/
+.env
+.env.*
+__pycache__/
+*.pyc
