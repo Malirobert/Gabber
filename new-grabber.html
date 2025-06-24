@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabbber - Download multiple videos at once</title>
+    <meta name="description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+    <meta name="keywords" content="video downloader, download TikTok, download Instagram, download Twitter, multiple download, Excel import">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Grabbber">
+    <meta property="og:title" content="Grabbber - Multi-Platform Video Downloader">
+    <meta property="og:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+    <meta property="og:image" content="https://your-site.com/images/grabbber-preview.jpg">
+    <meta property="og:url" content="https://your-site.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Grabbber - Multi-Platform Video Downloader">
+    <meta name="twitter:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+    <meta name="twitter:image" content="https://your-site.com/images/grabbber-preview.jpg">
+    <link rel="canonical" href="https://your-site.com/new-grabber.html">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Add a favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style">
+    <!-- Ajout de données structurées Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Grabbber",
+      "url": "https://your-site.com",
+      "description": "Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.",
+      "applicationCategory": "MultimediaApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <style>
+       .url-item {
+           display: flex;
+           align-items: center;
+           padding: 0.75rem;
+           border: 1px solid #e2e8f0;
+           border-radius: 0.5rem;
+           margin-bottom: 0.5rem;
+           background: white;
+           transition: all 0.3s;
+           justify-content: space-between; /* Assure que les éléments sont bien espacés */
+       }
+       .url-text {
+           flex-grow: 1;
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           margin: 0 1rem;
+       }
+       .delete-btn {
+           opacity: 0.7;
+           transition: opacity 0.2s;
+           margin-left: auto; /* Force le bouton à rester à droite */
+           font-size: 1.1rem; /* Augmente légèrement la taille de l'icône */
+           padding: 0.25rem; /* Ajoute un peu d'espace autour de l'icône */
+       }
+       .url-item:hover .delete-btn {
+           opacity: 1;
+       }
+       .platform-badge {
+           padding: 0.25rem 0.5rem;
+           border-radius: 9999px;
+           font-size: 0.75rem;
+           font-weight: 500;
+       }
+       .download-progress {
+           transition: all 0.3s ease;
+       }
+       .gradient-bg {
+           background: linear-gradient(to right, #6366f1, #8b5cf6, #ec4899);
+       }
+       .animate-gradient-x {
+           background-size: 200% 200%;
+           animation: gradient-x 3s ease infinite;
+       }
+       @keyframes gradient-x {
+           0% { background-position: 0% 50%; }
+           50% { background-position: 100% 50%; }
+           100% { background-position: 0% 50%; }
+       }
+        
+       /* Style pour les bannières publicitaires - CORRIGÉ */
+       .ad-left-container, .ad-right-container {
+           position: fixed;
+           top: 80px; /* Espace pour la navbar */
+           width: 160px;
+           height: calc(100vh - 80px);
+           z-index: 10;
+           pointer-events: none; /* Permet de cliquer à travers le conteneur */
+           overflow: visible;
+       }
+       
+       .ad-left-container {
+           left: 0;
+       }
+       
+       .ad-right-container {
+           right: 0;
+       }
+       
+       .ad-left-scroll, .ad-right-scroll {
+           height: 100%;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           gap: 20px;
+           padding: 10px;
+       }
+       
+       .ad-item {
+           width: 160px;
+           pointer-events: auto; /* Permet de cliquer sur les bannières */
+           background: white;
+           border-radius: 5px;
+           box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+       }
+       
+       .sticky-bottom-ad {
+           position: fixed;
+           bottom: 0;
+           left: 0;
+           width: 100%;
+           z-index: 1000;
+           text-align: center;
+           background: rgba(255, 255, 255, 0.8);
+           padding: 5px 0;
+           pointer-events: auto;
+       }
+       
+       /* Cacher le widget sticky-bottom-ad sur les écrans mobiles */
+       @media (max-width: 768px) {
+           .sticky-bottom-ad {
+               display: none !important;
+           }
+       }
+       
+       /* Style pour la bannière centrale rotative */
+       .center-ad-container {
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           width: 300px;
+           height: 250px;
+           background: white;
+           border-radius: 8px;
+           box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+           z-index: 2000;
+           display: none;
+           overflow: hidden;
+       }
+       
+       .center-ad-timer {
+           position: absolute;
+           top: 10px;
+           left: 10px;
+           background: rgba(0,0,0,0.7);
+           color: white;
+           padding: 2px 6px;
+           border-radius: 10px;
+           font-size: 12px;
+           z-index: 2001;
+       }
+       
+       .center-ad-close {
+           position: absolute;
+           top: 5px;
+           right: 5px;
+           width: 24px;
+           height: 24px;
+           background: rgba(0,0,0,0.7);
+           color: white;
+           border: none;
+           border-radius: 50%;
+           font-size: 16px;
+           cursor: pointer;
+           z-index: 2001;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           opacity: 0; /* Ajout de cette ligne pour définir l'opacité initiale */
+           transition: opacity 0.3s ease; /* Ajout d'une transition pour un effet plus fluide */
+       }
+       
+       .center-ad-content {
+           width: 100%;
+           height: 100%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+       
+       .main-content {
+           margin: 0 auto;
+           padding: 0 180px; /* Espace pour les bannières latérales */
+           max-width: 1200px;
+       }
+       
+       /* Masquer les bannières sur mobile */
+       @media (max-width: 1024px) {
+           .ad-left-container, .ad-right-container {
+               display: none;
+           }
+           
+           .main-content {
+               padding: 0 10px;
+           }
+       }
+   </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation Bar reste inchangé -->
+            <!-- Navigation Bar -->
+            <nav class="bg-white shadow-lg sticky top-0 z-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 flex items-center">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
+                                    <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+                                </div>
+                                <span class="ml-2 text-xl font-bold text-blue-600">Grabbber</span>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex items-center space-x-8">
+                            <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Promo</a>
+                            <a href="blog.html" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
+                            <a href="#mobile" class="text-gray-700 hover:text-blue-600 transition">Grabbber Extension</a>
+                            <div class="group relative">
+                                <div class="hidden group-hover:block absolute z-50 mt-2 w-80 bg-white rounded-md shadow-lg p-4 right-0">
+                                    <p class="text-sm text-gray-600">Find out the most downloaded videos from various areas such as Movies, Music, Entertainment, Adult and more</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:hidden flex items-center">
+                            <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile menu -->
+                    <div id="mobile-menu" class="hidden md:hidden">
+                        <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-b-lg shadow-lg">
+                            <a href="#promo" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 hover:shadow-xl transition duration-300">Promo</a>
+                            <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Blog</a>
+                            <a href="#mobile" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Grabbber Extension</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container mx-auto px-4 py-8 max-w-4xl">
+                <!-- Le contenu existant reste inchangé -->
+                <header class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-blue-600 mb-2">Grabbber - Multi-Platform Video Downloader</h1>
+                    <p class="text-lg text-gray-600">Download multiple videos at once</p>
+                    <div class="mt-4 text-blue-800 font-medium">
+                        <span id="url-counter">0</span> <span id="video-selected-text">videos selected</span>
+                    </div>
+                </header>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <div class="flex flex-col md:flex-row gap-2 mb-4">
+                        <input type="text" id="url-input" placeholder="Paste video URL here..."
+                               class="flex-grow px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button id="add-url-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-plus mr-2"></i>Add URL
+                        </button>
+                    </div>
+                    <div id="url-error" class="text-red-500 hidden mb-4"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-2 mb-4">
+                        <div class="flex-grow">
+                            <label for="excel-input" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition duration-300 flex items-center justify-center cursor-pointer">
+                                <i class="fas fa-file-excel mr-2"></i>Import from Excel
+                                <input type="file" id="excel-input" accept=".xlsx, .xls, .csv" class="hidden">
+                            </label>
+                        </div>
+                        <div id="excel-status" class="text-green-600 hidden"></div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500 mb-4">
+                        Supports: 
+                        <span class="inline-block bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs mr-1">YouTube</span>
+                        <span class="inline-block bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs mr-1">Instagram</span>
+                        <span class="inline-block bg-black text-white px-2 py-1 rounded-full text-xs mr-1">TikTok</span>
+                        <span class="inline-block bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs mr-1">XVideos</span>
+                        <span class="inline-block bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs mr-1">PornHub</span>
+                        <span class="inline-block bg-blue-600 text-white px-2 py-1 rounded-full text-xs mr-1">Facebook</span>
+                        <span class="inline-block bg-black text-white px-2 py-1 rounded-full text-xs mr-1">X/Twitter</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">Your URLs</h2>
+                    <div id="url-list" class="mb-6">
+                        <div class="text-gray-500 text-center py-8" id="empty-list-message">
+                            <i class="fas fa-link text-3xl mb-2"></i>
+                            <p>Add URLs to start downloading videos</p>
+                        </div>
+                    </div>
+                    <button id="download-all-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition duration-300 flex items-center justify-center disabled:bg-blue-300 disabled:cursor-not-allowed" disabled>
+                        <i class="fas fa-download mr-2"></i>Download All
+                    </button>
+                </div>
+
+                <div id="results-container" class="bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">Download Results</h2>
+                    <div id="results-list" class="divide-y divide-gray-200 max-h-80 overflow-y-auto"></div>
+                </div>
+            </div>
+
+              <!-- Features Section -->
+              <section class="container mx-auto px-4 py-6 max-w-4xl" aria-labelledby="features-heading">
+                  <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                      <h2 id="features-heading" class="text-2xl font-semibold text-blue-600 mb-4">Download Videos</h2>
+                       
+                      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                          <article class="bg-blue-50 p-4 rounded-lg text-center">
+                              <div class="text-3xl text-blue-500 mb-2"><i class="fas fa-infinity" aria-hidden="true" title="Unlimited downloads"></i></div>
+                              <h3 class="font-bold mb-2">Unlimited</h3>
+                              <p class="text-gray-600">Download as many videos as you want from your favorite platforms - without any limits.</p>
+                          </article>
+                           
+                          <article class="bg-blue-50 p-4 rounded-lg text-center">
+                              <div class="text-3xl text-blue-500 mb-2"><i class="fas fa-ban" aria-hidden="true" title="No watermark"></i></div>
+                              <h3 class="font-bold mb-2">No Watermark</h3>
+                              <p class="text-gray-600">Download videos without watermarks or remove platform logos.</p>
+                          </article>
+                           
+                          <article class="bg-blue-50 p-4 rounded-lg text-center">
+                              <div class="text-3xl text-blue-500 mb-2"><i class="fas fa-file-video" aria-hidden="true" title="MP4 format"></i></div>
+                              <h3 class="font-bold mb-2">MP4 format</h3>
+                              <p class="text-gray-600">Download multiple videos at once, Save files in HD quality.</p>
+                          </article>
+                      </div>
+                  </div>
+              </section>
+             
+            <!-- How to Download Section -->
+            <div class="container mx-auto px-4 py-6 max-w-4xl">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">How to Download Videos With Grabbber</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="border border-gray-200 p-4 rounded-lg">
+                            <div class="text-2xl text-blue-500 mb-2">1</div>
+                            <h4 class="font-bold mb-2">Find a Video</h4>
+                            <p class="text-gray-600">Open your favorite social media app on your mobile device. Scroll to find the video you want to save. Play the video to confirm it's the right one.</p>
+                        </div>
+                        
+                        <div class="border border-gray-200 p-4 rounded-lg">
+                            <div class="text-2xl text-blue-500 mb-2">2</div>
+                            <h4 class="font-bold mb-2">Copy the Link</h4>
+                            <p class="text-gray-600">Tap the Share button located on the side of the screen. Select Copy link from the menu. Check your clipboard to ensure the URL is correctly copied.</p>
+                        </div>
+                        
+                        <div class="border border-gray-200 p-4 rounded-lg">
+                            <div class="text-2xl text-blue-500 mb-2">3</div>
+                            <h4 class="font-bold mb-2">Save the Video</h4>
+                            <p class="text-gray-600">Paste the copied link in the text field at the top of this page. Click 'Add URL' to start downloading the video.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+            <!-- Video Demo Container -->
+            <div class="container mx-auto px-4 py-6 max-w-4xl">
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">  <!-- Padding augmenté de p-6 à p-8 -->
+                    <h3 class="text-xl font-semibold text-blue-600 text-center mb-6">Here is how to download multiple videos at once with Grabbber</h3>
+                    
+                    <div class="aspect-w-16 aspect-h-9 mb-8">  <!-- Marge inférieure augmentée -->
+                        <div class="w-full h-0 pb-[56.25%] relative bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer" id="video-demo-container" style="min-height: 350px;" aria-label="Video demonstration of how to download multiple videos with Grabbber" loading="lazy">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-6xl text-blue-500 opacity-70" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center text-gray-600 mb-4 text-lg">Video demonstration</p>  <!-- Taille de texte augmentée -->
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const videoContainer = document.getElementById('video-demo-container');
+                            
+                            videoContainer.addEventListener('click', function() {
+                                // Dans le script de la vidéo démo
+                                this.innerHTML = `<iframe class="absolute inset-0 w-full h-full" style="min-height: 350px;" src="about:blank" title="Video demonstration of Grabbber multi-download feature" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                                // Note: Replace 'about:blank' with your actual video URL
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+             
+            <!-- Features List Section -->
+            <div class="container mx-auto px-4 py-6 max-w-4xl">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-4">How Grabbber Stands Out</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <ul class="list-disc pl-5">
+                            <li class="mb-2">Download videos from Instagram, TikTok, Twitter and more</li>
+                            <li class="mb-2">No username required. Simply paste the link.</li>
+                            <li class="mb-2">High-speed video download in HD quality</li>
+                            <li class="mb-2">Download multiple videos simultaneously</li>
+                        </ul>
+                        
+                        <ul class="list-disc pl-5">
+                            <li class="mb-2">Download videos in mp4 or mp3 format</li>
+                            <li class="mb-2">Works on any browser and operating system</li>
+                            <li class="mb-2">Watermark-free downloads in HD quality</li>
+                            <li class="mb-2">Import multiple video URLs via Excel file for faster batch processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             
+            <!-- FAQ Section -->
+            <div class="container mx-auto px-4 py-6 max-w-4xl">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-4">Frequently Asked Questions</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
+                                <span>Do I have to pay to use video download without watermark?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="px-4 py-3 bg-gray-50 hidden">
+                                <p class="text-gray-600">No, our service is completely free. You can download as many videos as you want without any payment.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
+                                <span>Do I need to install an extension to use the Downloader?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="px-4 py-3 bg-gray-50 hidden">
+                                <p class="text-gray-600">No, you don't need to install any extension. Our service works directly in your browser.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
+                                <span>Where are videos saved after downloading?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="px-4 py-3 bg-gray-50 hidden">
+                                <p class="text-gray-600">Videos are saved to your default download location in your browser. You can change this in your browser settings.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
+                                <span>Do I need to have an account to download videos?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="px-4 py-3 bg-gray-50 hidden">
+                                <p class="text-gray-600">No, you don't need to create an account or log in to use our service. Just paste the video URL and download.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+            <!-- Add FAQ Toggle Script -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const faqButtons = document.querySelectorAll('.border.border-gray-200.rounded-lg.overflow-hidden button');
+                    
+                    faqButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const content = this.nextElementSibling;
+                            const icon = this.querySelector('i');
+                            
+                            // Toggle content visibility
+                            if (content.classList.contains('hidden')) {
+                                content.classList.remove('hidden');
+                                icon.classList.remove('fa-chevron-down');
+                                icon.classList.add('fa-chevron-up');
+                            } else {
+                                content.classList.add('hidden');
+                                icon.classList.remove('fa-chevron-up');
+                                icon.classList.add('fa-chevron-down');
+                            }
+                        });
+                    });
+                });
+            </script>
+
+            <!-- Include XLSX library for Excel import -->
+            <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+            <script>
+                function toggleMobileMenu() {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.toggle('hidden');
+                }
+            </script>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // DOM References
+                const urlInput = document.getElementById('url-input');
+                const addUrlBtn = document.getElementById('add-url-btn');
+                const urlList = document.getElementById('url-list');
+                const emptyListMessage = document.getElementById('empty-list-message');
+                const urlCounter = document.getElementById('url-counter');
+                const downloadAllBtn = document.getElementById('download-all-btn');
+                const excelInput = document.getElementById('excel-input');
+                const excelStatus = document.getElementById('excel-status');
+                const urlError = document.getElementById('url-error');
+                const resultsContainer = document.getElementById('results-container');
+                const resultsList = document.getElementById('results-list');
+                
+                // Global variables
+                let urls = [];
+                let isDownloading = false; // Variable pour suivre l'état du téléchargement
+                
+                // Fonction pour activer/désactiver l'interface pendant le téléchargement
+                function setInterfaceState(downloading) {
+                    isDownloading = downloading;
+                    
+                    // Désactiver/activer les éléments d'interface
+                    urlInput.disabled = downloading;
+                    addUrlBtn.disabled = downloading;
+                    downloadAllBtn.disabled = downloading;
+                    excelInput.disabled = downloading;
+                    
+                    // Changer l'apparence du bouton de téléchargement
+                    if (downloading) {
+                        downloadAllBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        downloadAllBtn.classList.remove('hover:bg-blue-600');
+                    } else {
+                        downloadAllBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        downloadAllBtn.classList.add('hover:bg-blue-600');
+                    }
+                    
+                    // Désactiver/activer les boutons de suppression
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    deleteButtons.forEach(btn => {
+                        btn.disabled = downloading;
+                        if (downloading) {
+                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                        } else {
+                            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        }
+                    });
+                }
+
+                function updateUrlCounter() {
+                    urlCounter.textContent = urls.length;
+                    if (urls.length > 0) {
+                        downloadAllBtn.disabled = false;
+                        emptyListMessage.style.display = 'none';
+                    } else {
+                        downloadAllBtn.disabled = true;
+                        emptyListMessage.style.display = 'block';
+                    }
+                }
+                
+                function validateUrl(url) {
+                    // Basic URL validation
+                    if (!url) return false;
+                    
+                    // Check if URL is from a supported platform
+                    const supportedPlatforms = [
+                        'youtube.com', 'youtu.be',
+                        'instagram.com',
+                        'tiktok.com',
+                        'xvideos.com',
+                        'pornhub.com',
+                        // 'xhamster.com', // Supprimé
+                        'facebook.com', 'fb.com', 'fb.watch',
+                        'twitter.com', 'x.com'
+                    ];
+                    
+                    return supportedPlatforms.some(platform => url.includes(platform));
+                }
+                
+                function identifyPlatform(url) {
+                    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                        return { name: 'YouTube', class: 'bg-red-100 text-red-700' };
+                    } else if (url.includes('instagram.com')) {
+                        return { name: 'Instagram', class: 'bg-purple-100 text-purple-700' };
+                    } else if (url.includes('tiktok.com')) {
+                        return { name: 'TikTok', class: 'bg-black text-white' };
+                    } else if (url.includes('xvideos.com')) {
+                        return { name: 'XVideos', class: 'bg-red-100 text-red-700' };
+                    } else if (url.includes('pornhub.com')) {
+                        return { name: 'PornHub', class: 'bg-yellow-100 text-yellow-700' };
+                    } 
+                    // else if (url.includes('xhamster.com')) {
+                    //     return { name: 'XHamster', class: 'bg-blue-100 text-blue-700' };
+                    // } // Supprimé
+                    else if (url.includes('facebook.com') || url.includes('fb.com') || url.includes('fb.watch')) {
+                        return { name: 'Facebook', class: 'bg-blue-600 text-white' };
+                    } else if (url.includes('twitter.com') || url.includes('x.com')) {
+                        return { name: 'X/Twitter', class: 'bg-black text-white' };
+                    }
+                    return { name: 'Unknown', class: 'bg-gray-100 text-gray-700' };
+                }
+                
+                function addUrlToList(url) {
+                    if (!validateUrl(url)) {
+                        urlError.textContent = 'Please enter a valid URL from a supported platform';
+                        urlError.classList.remove('hidden');
+                        return;
+                    }
+                    
+                    if (urls.includes(url)) {
+                        urlError.textContent = 'This URL is already added';
+                        urlError.classList.remove('hidden');
+                        return;
+                    }
+                    
+                    urlError.classList.add('hidden');
+                    
+                    urls.push(url);
+                    
+                    const platform = identifyPlatform(url);
+                    
+                    const urlItem = document.createElement('div');
+                    urlItem.className = 'url-item flex justify-between items-center';
+                    urlItem.dataset.url = url;
+                    
+                    const leftPart = document.createElement('div');
+                    leftPart.className = 'flex items-center flex-grow overflow-hidden';
+                    
+                    const platformBadge = document.createElement('span');
+                    platformBadge.className = `platform-badge ${platform.class} flex-shrink-0`;
+                    platformBadge.textContent = platform.name;
+                    
+                    const urlText = document.createElement('span');
+                    urlText.className = 'url-text truncate ml-2';
+                    urlText.textContent = url;
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-btn text-red-500 hover:text-red-700 ml-2 flex-shrink-0';
+                    deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    deleteBtn.addEventListener('click', function() {
+                        urlItem.remove();
+                        urls = urls.filter(u => u !== url);
+                        updateUrlCounter();
+                    });
+                    
+                    leftPart.appendChild(platformBadge);
+                    leftPart.appendChild(urlText);
+                    
+                    urlItem.appendChild(leftPart);
+                    urlItem.appendChild(deleteBtn);
+                    
+                    urlList.appendChild(urlItem);
+                    urlInput.value = '';
+                    
+                    updateUrlCounter();
+                }
+                
+                function addUrl() {
+                    const url = urlInput.value.trim();
+                    if (url) {
+                        addUrlToList(url);
+                    } else {
+                        urlError.textContent = 'No url added yet';
+                        urlError.classList.remove('hidden');
+                    }
+                }
+                
+                function handleExcelImport(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, {type: 'array'});
+                            
+                            // Get first worksheet
+                            const worksheetName = workbook.SheetNames[0];
+                            const worksheet = workbook.Sheets[worksheetName];
+                            
+                            // Convert to JSON
+                            const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+                            
+                            // Extract URLs (assuming URLs are in the first column)
+                            let importCount = 0;
+                            jsonData.forEach(row => {
+                                if (row.length > 0 && typeof row[0] === 'string') {
+                                    const url = row[0].trim();
+                                    if (validateUrl(url) && !urls.includes(url)) {
+                                        addUrlToList(url);
+                                        importCount++;
+                                    }
+                                }
+                            });
+                            
+                            // Show status
+                            excelStatus.textContent = `Imported ${importCount} URLs from Excel`;
+                            excelStatus.classList.remove('hidden');
+                            setTimeout(() => {
+                                excelStatus.classList.add('hidden');
+                            }, 3000);
+                            
+                        } catch (error) {
+                            console.error('Error parsing Excel file:', error);
+                            excelStatus.textContent = 'Error parsing Excel file';
+                            excelStatus.classList.remove('hidden');
+                            setTimeout(() => {
+                                excelStatus.classList.add('hidden');
+                            }, 3000);
+                        }
+                    };
+                    reader.readAsArrayBuffer(file);
+                }
+                
+                function createDownloadItem(url, status) {
+                    const platform = identifyPlatform(url);
+                    const item = document.createElement('div');
+                    item.className = 'py-4';
+                    item.dataset.url = url;
+                    
+                    let statusHTML = '';
+                    if (status === 'downloading') {
+                        statusHTML = `
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 mr-3 flex-shrink-0">
+                                    <div class="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <div class="text-blue-500 font-medium">Downloading...</div>
+                            </div>
+                        `;
+                    } else if (status === 'success') {
+                        statusHTML = `
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 mr-3 flex-shrink-0 text-green-500">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </div>
+                                    <div class="text-green-500 font-medium">Download complete</div>
+                                </div>
+                                <button class="open-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition duration-300 ml-4">
+                                    <i class="fas fa-external-link-alt mr-1"></i>Open
+                                </button>
+                            </div>
+                        `;
+                    } else if (status === 'error') {
+                        statusHTML = `
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 mr-3 flex-shrink-0 text-red-500">
+                                    <i class="fas fa-times-circle text-xl"></i>
+                                </div>
+                                <div class="text-red-500 font-medium">Download failed</div>
+                            </div>
+                        `;
+                    }
+                    
+                    item.innerHTML = `
+                        <div class="flex items-center mb-2">
+                            <span class="platform-badge ${platform.class} mr-2">${platform.name}</span>
+                            <span class="text-sm text-gray-600 truncate">${url}</span>
+                        </div>
+                        ${statusHTML}
+                    `;
+                    
+                    // Ajouter l'écouteur d'événement pour le bouton d'ouverture si c'est un téléchargement réussi
+                    if (status === 'success') {
+                        const openBtn = item.querySelector('.open-btn');
+                        if (openBtn) {
+                            const downloadState = getDownloadState(url);
+                            if (downloadState && downloadState.downloadId && downloadState.fileName) {
+                                openBtn.addEventListener('click', function() {
+                                    window.open(`http://localhost:5000/download/${downloadState.downloadId}/${downloadState.fileName}`, '_blank');
+                                });
+                            } else {
+                                openBtn.disabled = true;
+                                openBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                            }
+                        }
+                    }
+                    
+                    return item;
+                }
+
+                // Ajouter la fonction loadSavedDownloads manquante
+                function loadSavedDownloads() {
+                    const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                    
+                    // Afficher le conteneur de résultats s'il y a des téléchargements sauvegardés
+                    if (Object.keys(downloads).length > 0) {
+                        resultsContainer.classList.remove('hidden');
+                    }
+                    
+                    // Parcourir tous les téléchargements sauvegardés
+                    for (const [url, downloadData] of Object.entries(downloads)) {
+                        // Créer un élément pour chaque téléchargement selon son état
+                        const downloadItem = createDownloadItem(url, downloadData.state);
+                        resultsList.appendChild(downloadItem);
+                        
+                        // Si c'est un téléchargement réussi, ajouter l'écouteur d'événement pour le bouton d'ouverture
+                        if (downloadData.state === 'success') {
+                            const openBtn = downloadItem.querySelector('.open-btn');
+                            if (openBtn && downloadData.downloadId && downloadData.fileName) {
+                                openBtn.addEventListener('click', function() {
+                                    window.open(`http://localhost:5000/download/${downloadData.downloadId}/${downloadData.fileName}`, '_blank');
+                                });
+                            }
+                        }
+                    }
+                }
+
+                // Fonctions pour gérer la persistance des téléchargements
+                function saveDownloadState(url, state, downloadId = null, fileName = null) {
+                    const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                    downloads[url] = {
+                        state: state,
+                        downloadId: downloadId,
+                        fileName: fileName,
+                        timestamp: new Date().getTime()
+                    };
+                    localStorage.setItem('downloads', JSON.stringify(downloads));
+                }
+
+                function getDownloadState(url) {
+                    const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                    return downloads[url] || null;
+                }
+
+                // Modifier la fonction downloadVideos
+                async function downloadVideos(e) {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    
+                    if (urls.length === 0 || isDownloading) return;
+                    
+                    // Désactiver l'interface pendant le téléchargement
+                    setInterfaceState(true);
+                    
+                    // Afficher le conteneur de résultats
+                    resultsList.innerHTML = '';
+                    resultsContainer.classList.remove('hidden');
+                    
+                    // Copy URLs for processing
+                    const urlsToDownload = [...urls];
+                    
+                    // Vider la liste d'URLs après avoir commencé le téléchargement
+                    urls = [];
+                    urlList.innerHTML = '';
+                    emptyListMessage.style.display = 'block';
+                    updateUrlCounter();
+                    
+                    // Create display elements for each URL
+                    for (let url of urlsToDownload) {
+                        const downloadItem = createDownloadItem(url, 'downloading');
+                        resultsList.appendChild(downloadItem);
+                    }
+                    
+                    // Process each URL sequentially
+                    for (let url of urlsToDownload) {
+                        try {
+                            console.log('Processing:', url);
+                            
+                            // Sauvegarder l'état 'downloading'
+                            saveDownloadState(url, 'downloading');
+                            
+                            // Démarrer le téléchargement
+                            const response = await fetch('http://localhost:5000/download', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ url: url })
+                            });
+                            
+                            const data = await response.json();
+                            console.log('Response received:', data);
+                            
+                            if (response.ok && data.download_id) {
+                                // Commencer à vérifier l'état du téléchargement
+                                await pollDownloadStatus(url, data.download_id);
+                            } else {
+                                // Erreur au démarrage du téléchargement
+                                saveDownloadState(url, 'error');
+                                
+                                const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                                if (resultItem) {
+                                    resultItem.replaceWith(createDownloadItem(url, 'error'));
+                                }
+                            }
+                        } catch (error) {
+                            console.error('Network error for:', url, error);
+                            
+                            // Error - sauvegarder l'état 'error'
+                            saveDownloadState(url, 'error');
+                            
+                            const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                            if (resultItem) {
+                                resultItem.replaceWith(createDownloadItem(url, 'error'));
+                            }
+                        }
+                    }
+                    
+                    // Réactiver l'interface après le téléchargement
+                    setInterfaceState(false);
+                }
+
+                // Ajouter une fonction pour vérifier périodiquement l'état du téléchargement
+                async function pollDownloadStatus(url, downloadId, attempts = 0) {
+                    // Maximum 60 tentatives (2 minutes avec 2 secondes d'intervalle)
+                    const maxAttempts = 60;
+                    const interval = 2000; // 2 secondes d'intervalle
+                    
+                    if (attempts >= maxAttempts) {
+                        console.error('Timeout waiting for download to complete:', url);
+                        saveDownloadState(url, 'error');
+                        
+                        const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                        if (resultItem) {
+                            resultItem.replaceWith(createDownloadItem(url, 'error'));
+                        }
+                        return false; // Indique que le téléchargement a échoué
+                    }
+                    
+                    try {
+                        console.log(`Vérification du statut pour ${url}, tentative ${attempts+1}/${maxAttempts}`);
+                        const response = await fetch(`http://localhost:5000/download/status/${downloadId}`);
+                        
+                        if (!response.ok) {
+                            throw new Error(`Erreur HTTP: ${response.status}`);
+                        }
+                        
+                        const statusData = await response.json();
+                        console.log(`Download status for ${url}:`, statusData);
+                        
+                        const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                        
+                        // Vérifier explicitement le statut renvoyé par le serveur
+                        // Dans la fonction pollDownloadStatus, modifiez la partie qui gère le statut 'completed'
+                        if (statusData.status === 'completed' && statusData.file_name) {
+                            // Téléchargement terminé avec succès
+                            console.log(`Téléchargement terminé pour ${url}`);
+                            saveDownloadState(url, 'success', downloadId, statusData.file_name);
+                            
+                            if (resultItem) {
+                                const successItem = createDownloadItem(url, 'success');
+                                resultItem.replaceWith(successItem);
+                                
+                                // Déclencher automatiquement le téléchargement du fichier
+                                // Cela va télécharger le fichier sur le PC et l'ajouter à l'historique de Chrome
+                                window.open(`http://localhost:5000/download/${downloadId}/${statusData.file_name}`, '_self');
+                            }
+                            return true; // Indique que le téléchargement est terminé avec succès
+                        } else if (statusData.status === 'error') {
+                            // Erreur de téléchargement
+                            console.error(`Erreur de téléchargement pour ${url}:`, statusData.error);
+                            saveDownloadState(url, 'error');
+                            
+                            if (resultItem) {
+                                resultItem.replaceWith(createDownloadItem(url, 'error'));
+                            }
+                            return false; // Indique que le téléchargement a échoué
+                        } else {
+                            // Téléchargement en cours ou statut inconnu, vérifier à nouveau après l'intervalle
+                            console.log(`Téléchargement en cours pour ${url}, nouvelle vérification dans ${interval/1000}s`);
+                            await new Promise(resolve => setTimeout(resolve, interval));
+                            return pollDownloadStatus(url, downloadId, attempts + 1);
+                        }
+                    } catch (error) {
+                        console.error('Error checking download status:', error);
+                        // En cas d'erreur réseau, réessayer après l'intervalle
+                        await new Promise(resolve => setTimeout(resolve, interval));
+                        return pollDownloadStatus(url, downloadId, attempts + 1);
+                    }
+                }
+                // Event listeners
+                addUrlBtn.addEventListener('click', addUrl);
+                
+                urlInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        addUrl();
+                    }
+                });
+                
+                downloadAllBtn.addEventListener('click', downloadVideos);
+                
+                excelInput.addEventListener('change', handleExcelImport);
+                
+                // Initialization
+                updateUrlCounter();
+                
+                // Charger les téléchargements sauvegardés
+                loadSavedDownloads();
+            });
+            </script>
+
+                <footer class="bg-gray-900 text-white py-12">
+                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                            <div class="mx-auto md:mx-0 text-center md:text-left">
+                                <div class="flex items-center mb-4 justify-center md:justify-start">
+                                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
+                                        <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+                                    </div>
+                                    <span class="ml-2 text-xl font-bold">Grabbber</span>
+                                </div>
+                                <p class="text-gray-400">Best free video downloader extension for chrome</p>
+                                <div class="flex space-x-4 mt-4 justify-center md:justify-start">
+                                    <a href="https://www.instagram.com/grabbber.site/#/" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.youtube.com/@grabbber.channel/#/" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                            <div class="mx-auto text-center md:text-left">
+                                <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                                <ul class="space-y-2">
+                                    <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a></li>
+                                    <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Terms</a></li>
+                                    <li><a href="mailto:contact@grabbber.site" class="text-gray-400 hover:text-white transition">contact@grabbber.site</a></li>
+                                </ul>
+                            </div>
+                            <div class="text-center md:text-right mt-8 md:mt-0">
+                                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Promo</a>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                            <p>&copy; 2025 Grabbber All rights reserved.</p>
+                        </div>
+                    </div>
+            </footer>
+    </div>
+    
+    <!-- Bannières de gauche - MODIFIÉ -->
+    <div class="ad-left-container">
+        <div class="ad-left-scroll">
+            <!-- Exoclice Left 1 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653232"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+            
+            <!-- Pawn.app Left 1 -->
+            <div class="ad-item">
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+                </a>
+            </div>
+            
+            <!-- Exoclice Left 2 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653236"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+            
+            <!-- Pawn.app Left 2 -->
+            <div class="ad-item">
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+                </a>
+            </div>
+            
+            <!-- Exoclice Left 3 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653240"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contenu principal - MODIFIÉ -->
+    <div class="main-content">
+
+    <!-- Bannières de droite - MODIFIÉ -->
+    <div class="ad-right-container">
+        <div class="ad-right-scroll">
+            <!-- Exoclice Right 1 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653234"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+            
+            <!-- Pawn.app Right 1 -->
+            <div class="ad-item">
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+                </a>
+            </div>
+            
+            <!-- Exoclice Right 2 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653238"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+            
+            <!-- Pawn.app Right 2 -->
+            <div class="ad-item">
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+                </a>
+            </div>
+            
+            <!-- Exoclice Right 3 -->
+            <div class="ad-item">
+                <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+                <ins class="eas6a97888e2" data-zoneid="5653242"></ins>
+                <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Widget en bas de l'écran - Inchangé -->
+    <div class="sticky-bottom-ad">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e17" data-zoneid="5653250"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+    
+    <!-- Bannière centrale rotative -->
+    <div class="center-ad-container" id="centerAdContainer">
+        <div class="center-ad-timer" id="centerAdTimer">10s</div>
+        <button class="center-ad-close" id="centerAdClose">×</button>
+        <div class="center-ad-content" id="centerAdContent"></div>
+    </div>
+    
+    <!-- Script pour faire défiler les bannières avec le scroll de la page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const leftScroll = document.querySelector('.ad-left-scroll');
+            const rightScroll = document.querySelector('.ad-right-scroll');
+            const leftItems = document.querySelectorAll('.ad-left-scroll .ad-item');
+            const rightItems = document.querySelectorAll('.ad-right-scroll .ad-item');
+            
+            // Calculer la hauteur totale des bannières
+            const leftHeight = Array.from(leftItems).reduce((total, item) => total + item.offsetHeight + 20, 0); // 20px pour le gap
+            const rightHeight = Array.from(rightItems).reduce((total, item) => total + item.offsetHeight + 20, 0);
+            
+            // Hauteur visible de la zone de bannières
+            const visibleHeight = window.innerHeight - 80; // 80px pour la navbar
+            
+            // Calculer le déplacement maximum
+            const maxLeftScroll = Math.max(0, leftHeight - visibleHeight);
+            const maxRightScroll = Math.max(0, rightHeight - visibleHeight);
+            
+            // Ajouter un facteur multiplicateur pour s'assurer que toutes les bannières sont visibles
+            const scrollFactor = 1.5; // Augmente l'amplitude du défilement
+            
+            window.addEventListener('scroll', function() {
+                // Calculer le pourcentage de défilement de la page
+                const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+                
+                // Appliquer le défilement aux bannières avec le facteur multiplicateur
+                if (maxLeftScroll > 0) {
+                    leftScroll.style.transform = `translateY(-${scrollPercentage * maxLeftScroll * scrollFactor}px)`;
+                }
+                
+                if (maxRightScroll > 0) {
+                    rightScroll.style.transform = `translateY(-${scrollPercentage * maxRightScroll * scrollFactor}px)`;
+                }
+            });
+            
+            // Ajouter un événement de redimensionnement pour recalculer les hauteurs
+            window.addEventListener('resize', function() {
+                // Recalculer la hauteur visible
+                const newVisibleHeight = window.innerHeight - 80;
+                
+                // Mettre à jour les déplacements maximums
+                const newMaxLeftScroll = Math.max(0, leftHeight - newVisibleHeight);
+                const newMaxRightScroll = Math.max(0, rightHeight - newVisibleHeight);
+                
+                // Appliquer les nouveaux déplacements
+                const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+                
+                if (newMaxLeftScroll > 0) {
+                    leftScroll.style.transform = `translateY(-${scrollPercentage * newMaxLeftScroll * scrollFactor}px)`;
+                }
+                
+                if (newMaxRightScroll > 0) {
+                    rightScroll.style.transform = `translateY(-${scrollPercentage * newMaxRightScroll * scrollFactor}px)`;
+                }
+            });
+        });
+    </script>
+    <!-- Script pour la bannière centrale rotative -->
+    <script>
+        window.addEventListener('load', function() {
+            // Éléments DOM
+            const centerAdContainer = document.getElementById('centerAdContainer');
+            const centerAdContent = document.getElementById('centerAdContent');
+            const centerAdClose = document.getElementById('centerAdClose');
+            const centerAdTimer = document.getElementById('centerAdTimer');
+            
+            // Contenu des bannières (Exoclice et Pawn.app)
+            const adContents = [
+                // Exoclice - Utiliser une div pour contenir le script
+                `<div id="exoclice-ad-container"></div>`,
+                
+                // Pawn.app
+                `<a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/300.jpg" alt="Pawns.app">
+                </a>`
+            ];
+            
+            let currentAdIndex = 0;
+            let timerInterval;
+            let secondsLeft = 10;
+            let adInterval;
+            
+            // Fonction pour afficher une bannière
+            function showAd() {
+                // Réinitialiser le timer
+                secondsLeft = 10;
+                centerAdTimer.textContent = secondsLeft + 's';
+                centerAdClose.style.opacity = '0';
+                
+                // Afficher la bannière
+                centerAdContent.innerHTML = adContents[currentAdIndex];
+                
+                // Si c'est une bannière Exoclice, injecter le script après avoir défini le HTML
+                if (currentAdIndex === 0) {
+                    const script1 = document.createElement('script');
+                    script1.async = true;
+                    script1.type = 'application/javascript';
+                    script1.src = 'https://a.magsrv.com/ad-provider.js';
+                    document.getElementById('exoclice-ad-container').appendChild(script1);
+                    
+                    const ins = document.createElement('ins');
+                    ins.className = 'eas6a97888e2';
+                    ins.setAttribute('data-zoneid', '5653420');
+                    document.getElementById('exoclice-ad-container').appendChild(ins);
+                    
+                    const script2 = document.createElement('script');
+                    script2.textContent = "(AdProvider = window.AdProvider || []).push({\"serve\": {}})";
+                    document.getElementById('exoclice-ad-container').appendChild(script2);
+                }
+                
+                centerAdContainer.style.display = 'block';
+                
+                // Alterner entre les types de bannières
+                currentAdIndex = (currentAdIndex + 1) % adContents.length;
+                
+                // Démarrer le timer
+                clearInterval(timerInterval);
+                timerInterval = setInterval(function() {
+                    secondsLeft--;
+                    centerAdTimer.textContent = secondsLeft + 's';
+                    
+                    // Afficher le bouton de fermeture après 10 secondes
+                    if (secondsLeft <= 0) {
+                        centerAdClose.style.opacity = '1';
+                        clearInterval(timerInterval);
+                        centerAdTimer.style.display = 'none';
+                    }
+                }, 1000);
+            }
+            
+            // Fonction pour fermer la bannière
+            function closeAd() {
+                centerAdContainer.style.display = 'none';
+                centerAdTimer.style.display = 'block';
+                clearInterval(timerInterval);
+            }
+            
+            // Événement de clic sur le bouton de fermeture
+            centerAdClose.addEventListener('click', closeAd);
+            
+            // Afficher la première bannière après 60 secondes
+            setTimeout(function() {
+                showAd();
+                
+                // Configurer l'intervalle pour afficher une nouvelle bannière toutes les 60 secondes
+                adInterval = setInterval(function() {
+                    // Si la bannière est déjà fermée, en afficher une nouvelle
+                    // Sinon, fermer la bannière actuelle et en afficher une nouvelle
+                    if (centerAdContainer.style.display === 'none') {
+                        showAd();
+                    } else {
+                        closeAd();
+                        showAd();
+                    }
+                }, 60000); // 60 secondes
+            }, 60000); // Première bannière après 60 secondes
+        });
+    </script>
+    
+</body>
+</html>
