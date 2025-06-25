@@ -22,7 +22,7 @@ def sanitize_filename(filename):
     return filename
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://grabbber.site", "https://www.grabbber.site"], supports_credentials=True)
 
 # Utiliser directement le dossier Vidéos de l'utilisateur sans sous-dossier
 DOWNLOAD_FOLDER = Path(os.path.expanduser('~/Videos'))
