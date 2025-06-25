@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabbber Premium</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title {
+            color: #3b82f6;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 20px 0;
+        }
+        .description {
+            color: #64748b;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .features {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .feature-item i {
+            color: #22c55e;
+            font-size: 1.2em;
+        }
+        .buy-button {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        .buy-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        /* Style pour le bouton désactivé */
+        .buy-button.sold-out {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .buy-button.sold-out:hover {
+            background: #94a3b8;
+            transform: none;
+        }
+        
+        .sold-out-message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            color: #475569;
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .instagram-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .instagram-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles pour les plans */
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            /* Supprimer flex-wrap: wrap; si vous voulez qu'ils restent toujours sur une seule ligne sur les grands écrans */
+            /* ou ajuster la largeur minimale pour éviter le wrap prématuré */
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            width: 300px; /* Assurez-vous que cette largeur permet aux deux cartes de tenir côte à côte */
+            min-width: 280px; /* Ajouter une largeur minimale pour éviter qu'elles ne deviennent trop petites */
+            text-align: center;
+            position: relative;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .plan-card.popular {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3), 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .plan-card.limited {
+            border-color: #a21caf;
+            box-shadow: 0 0 0 4px rgba(162, 28, 175, 0.2), 0 4px 6px -1px rgb(0 0 0 / 0.07);
+            position: relative;
+        }
+        .plan-card.limited::before {
+            content: 'Limited';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a21caf;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-card.popular::before {
+            content: 'Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .plan-title1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+        .plan-title2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #86198f;
+            margin-bottom: 10px;
+        }
+        .plan-price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 15px 0;
+        }
+
+        .plan-description {
+            color: #64748b;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .plan-features .feature-item {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .plan-features .feature-item i {
+            color: #22c55e;
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+
+        .plan-features .feature-item div {
+            font-size: 0.95em;
+            color: #475569;
+        }
+
+        .plan-buy-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .plan-buy-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        .plan-buy-button.plan-buy-button-lifetime {
+            background: #a21caf;
+            color: #fff;
+        }
+        .plan-buy-button.plan-buy-button-lifetime:hover {
+            background: #86198f;
+        }
+
+        .plan-buy-button.sold-out {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .plan-buy-button.sold-out:hover {
+            background: #94a3b8;
+            transform: none;
+        }
+
+        @media (max-width: 768px) {
+            .plans-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Choose Your Grabbber Plan</h1>
+        </div>
+        
+         <div class="plans-container">
+            <!-- Lifetime Plan -->
+            <div class="plan-card limited">
+                <div class="plan-title2">Lifetime Plan</div>
+                <div class="plan-price">$99.99</div>
+                <div class="plan-description">
+                    Become the complete owner of the extension with a one-time payment.
+                </div>
+                <div class="plan-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>Unlimited video downloads from all supported platforms (YouTube, Instagram, TikTok, Xvideos, and Pornhub)</div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>Full access to Grabbber AI Agents feature for automated downloads</div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>Exclusive setup video guide showing you how to deploy Grabbber on your PC for complete independence</div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>True lifetime ownership - download as many videos as you want, whenever you want, with no recurring fees</div>
+                    </div>
+                </div>
+                <a href="payment_confirm_lifetime.html"
+   class="plan-buy-button plan-buy-button-lifetime"
+>
+   Get it for life
+</a>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Overlay for payment confirmation -->
+<div id="lifetime-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(30,41,59,0.75); z-index:9999; justify-content:center; align-items:center;">
+    <div id="lifetime-content" style="background:white; border-radius:16px; max-width:700px; width:95vw; max-height:90vh; overflow:auto; box-shadow:0 8px 32px rgba(0,0,0,0.25); position:relative;">
+        <button onclick="closeLifetimeOverlay()" style="position:absolute; top:12px; right:18px; background:none; border:none; font-size:2em; color:#a21caf; cursor:pointer;">&times;</button>
+        <div id="lifetime-html"></div>
+    </div>
+</div>
+    <script>
+        // Fonction pour mettre à jour le statut premium
+        async function updatePremiumStatus(user) {
+            try {
+                // Mettre à jour dans Firebase
+                await firebase.firestore().collection('users').doc(user.uid).update({
+                    isPremium: true,
+                    premiumStartDate: Date.now(),
+                    premiumEndDate: Date.now() + 30 * 24 * 60 * 60 * 1000,
+                    subscriptionType: 'monthly',
+                    lastVerification: Date.now()
+                });
+
+                // Mettre à jour le stockage local
+                chrome.storage.local.set({
+                    isPremium: true,
+                    premiumStartDate: Date.now(),
+                    premiumEndDate: Date.now() + 30 * 24 * 60 * 60 * 1000,
+                    subscriptionType: 'monthly'
+                });
+
+                // Notifier le popup
+                chrome.runtime.sendMessage({
+                    action: 'subscription_updated',
+                    isPremium: true,
+                    startDate: Date.now(),
+                    endDate: Date.now() + 30 * 24 * 60 * 60 * 1000
+                });
+
+                // Afficher une notification de succès
+                showNotification('Premium subscription activated successfully!');
+            } catch (error) {
+                console.error('Error updating premium status:', error);
+                showNotification('Error activating premium status. Please contact support.', 'error');
+            }
+        }
+
+        // Écouter les événements Gumroad
+        window.addEventListener('message', async function(event) {
+            if (event.origin === 'https://gumroad.com') {
+                const user = firebase.auth().currentUser;
+                if (!user) {
+                    showNotification('Please login first', 'error');
+                    return;
+                }
+
+                if (event.data.purchaseComplete) {
+                    // Vérifier le paiement avec notre serveur
+                    try {
+                        const response = await fetch('https://grabbber.onrender.com/api/verify-payment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${await user.getIdToken()}`
+                            },
+                            body: JSON.stringify({
+                                email: user.email,
+                                timestamp: Date.now()
+                            })
+                        });
+
+                        const data = await response.json();
+                        if (data.success) {
+                            await updatePremiumStatus(user);
+                        } else {
+                            showNotification('Payment verification failed', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error verifying payment:', error);
+                        showNotification('Error verifying payment', 'error');
+                    }
+                }
+            }
+        });
+
+        function showSoldOutMessage() {
+            return false;
+        }
+
+        // Fonction pour afficher les notifications
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            if (!document.querySelector('#notification-style')) {
+                const style = document.createElement('style');
+                style.id = 'notification-style';
+                style.textContent = `
+                    .notification {
+                        position: fixed;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        color: white;
+                        font-weight: 500;
+                        z-index: 10000;
+                        animation: slideUp 0.3s ease;
+                    }
+                    .notification.success { background-color: #10B981; }
+                    .notification.error { background-color: #EF4444; }
+                    @keyframes slideUp {
+                        from { transform: translate(-50%, 100%); opacity: 0; }
+                        to { transform: translate(-50%, 0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    </script>
+
+    <script src="payment.js"></script>
+</body>
+</html>

@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grabbber - Download multiple videos at once</title>
-    <meta name="description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
-    <meta name="keywords" content="video downloader, download TikTok, download Instagram, download Twitter, multiple download, Excel import">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Grabbber">
-    <meta property="og:title" content="Grabbber - Multi-Platform Video Downloader">
-    <meta property="og:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
-    <meta property="og:image" content="https://your-site.com/images/grabbber-preview.jpg">
-    <meta property="og:url" content="https://your-site.com">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Grabbber - Multi-Platform Video Downloader">
-    <meta name="twitter:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
-    <meta name="twitter:image" content="https://your-site.com/images/grabbber-preview.jpg">
-    <link rel="canonical" href="https://your-site.com/new-grabber.html">
+     <meta name="description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+     <meta name="keywords" content="video downloader, download TikTok, download Instagram, download Twitter, multiple download, Excel import">
+     <meta name="robots" content="index, follow">
+     <meta name="author" content="Grabbber">
+     <meta property="og:title" content="Grabbber - Multi-Platform Video Downloader">
+     <meta property="og:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+     <meta property="og:image" content="https://grabbber.site/images/grabbber.jpg">
+     <meta property="og:url" content="https://grabbber.site">
+     <meta property="og:type" content="website">
+     <meta name="twitter:card" content="summary_large_image">
+     <meta name="twitter:title" content="Grabbber - Download Multiple Videos at Once">
+     <meta name="twitter:description" content="Download videos from Instagram, TikTok, Twitter and more for free. Multiple downloads and Excel import available.">
+     <meta name="twitter:image" content="https://grabbber.site/images/grabbber.jpg">
+    <link rel="canonical" href="https://grabbber.site/new-grabber.html">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <!-- Add a favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="https://grabbber.site/images/grabbber.png">
     <!-- Préchargement des ressources critiques -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style">
@@ -153,8 +152,8 @@
            top: 50%;
            left: 50%;
            transform: translate(-50%, -50%);
-           width: 300px;
-           height: 250px;
+           width: 450px;
+           height: 400px;
            background: white;
            border-radius: 8px;
            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -220,48 +219,335 @@
            }
        }
    </style>
+   
+   <style>
+  .banner-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  @media (min-width: 1025px) {
+    .banner-mobile {
+      display: none !important;
+    }
+  }
+  /* Pour éviter que l'image soit trop grande sur mobile */
+  .banner-mobile img, .banner-mobile ins {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+     <style>
+      
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 1.5rem; /* Coins arrondis pour le conteneur principal */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Assurez-vous qu'il n'y a pas de barres de défilement sur le conteneur principal lui-même */
+            max-width: 700px; /* Largeur maximale pour le conteneur principal */
+            max-height: 400px; /* Hauteur maximale ajustée pour le conteneur principal */
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .main-container {
+                flex-direction: row;
+            }
+            .left-section {
+                flex: 3; /* Rend la section gauche plus large sur les grands écrans */
+            }
+            .right-section {
+                flex: 2; /* Réduit la section droite proportionnellement */
+            }
+        }
+        @media (max-width: 767px) {
+            .main-container {
+                max-height: none; /* Permet au conteneur principal de s'étendre verticalement sur mobile */
+                flex-direction: column;
+                max-width: 100%; /* Assure qu'il prend toute la largeur sur mobile si nécessaire */
+            }
+            .left-section {
+                padding: 1rem; /* Padding réduit pour mobile */
+                min-height: auto; /* Permet à la hauteur de s'ajuster au contenu */
+                justify-content: center; /* Centre le contenu statique verticalement sur mobile */
+            }
+            .left-section.video-active-mobile-height {
+                min-height: 300px; /* Une hauteur minimale plus grande pour la vidéo sur mobile */
+            }
+            .left-section h1 {
+                font-size: 2rem; /* Titre légèrement plus petit pour mobile */
+                margin-bottom: 0.5rem;
+            }
+            .left-section p {
+                font-size: 1rem; /* Paragraphe plus petit pour mobile */
+                margin-bottom: 1rem;
+            }
+            .image-video-container {
+                display: none !important; /* Cache le bloc image/vidéo spécifique sur mobile avec !important */
+            }
+            #mobileGrabbberText {
+                display: block !important; /* Affiche le texte "Grabbber" sur mobile avec !important */
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+            }
+            .social-icon {
+                font-size: 1.8rem; /* Icônes plus petites pour mobile */
+            }
+            .left-section .flex.space-x-6 {
+                margin-bottom: 0.5rem;
+            }
+            #videoTitle {
+                font-size: 1.5rem; /* Titre de la vidéo plus petit pour mobile */
+                top: 0.5rem; /* Plus proche du haut */
+            }
+
+            .right-section {
+                padding: 1rem; /* Padding réduit pour mobile */
+            }
+            .right-section h2 {
+                font-size: 1.1rem; /* Titre légèrement plus petit pour la section de droite sur mobile */
+                margin-bottom: 0.5rem;
+            }
+            .right-section p { /* Cible le paragraphe condensé pour mobile */
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+            .get-it-for-life-button {
+                padding: 0.6rem 1.2rem; /* Bouton plus petit sur mobile */
+                font-size: 0.9rem;
+                margin-top: 0.75rem;
+                max-width: 100%; /* Permet au bouton de prendre toute la largeur */
+            }
+        }
+        .left-section {
+            background: linear-gradient(180deg, #1a2a6c, #0f1c40); /* Dégradé bleu foncé */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centrage vertical */
+            align-items: center; /* Centrage horizontal */
+            padding: 1.5rem 1rem; /* Padding ajusté pour un meilleur ajustement */
+            text-align: center;
+            flex: 1;
+            min-height: 200px; /* Hauteur minimale réduite pour la section gauche */
+            position: relative; /* Nécessaire pour le positionnement absolu de la vidéo et du titre */
+        }
+        /* Style pour les icônes Font Awesome */
+        .social-icon {
+            font-size: 2.2rem; /* Taille des icônes sociales */
+            color: white; /* Couleur des icônes */
+        }
+        .right-section {
+            padding: 1.5rem 1rem; /* Padding ajusté pour un meilleur ajustement */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Déplacer le contenu vers le bas */
+        }
+        .right-section h2 {
+            margin-top: 0; /* Supprimer la marge supérieure par défaut pour h2 */
+            margin-bottom: 0.75rem; /* Ajuster la marge sous le titre */
+            font-size: 1.15rem; /* Taille de police ajustée pour le titre */
+        }
+        .right-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0; /* Marge ajustée */
+        }
+        .right-section ul li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem; /* Marge ajustée pour mieux adapter le contenu */
+        }
+        .right-section ul li .check-icon {
+            color: #6a0dad; /* Couleur violette pour la coche */
+            font-size: 1.1rem; /* Taille de police légèrement réduite */
+            margin-right: 0.6rem; /* Marge ajustée */
+            flex-shrink: 0;
+        }
+        .right-section ul li span {
+            font-size: 0.9rem; /* Taille de police légèrement réduite pour les éléments de liste */
+        }
+        .get-it-for-life-button {
+            background-color: #6a0dad; /* Fond violet pour le bouton */
+            color: white;
+            padding: 0.75rem 1.5rem; /* Padding ajusté */
+            border-radius: 0.75rem; /* Coins arrondis pour le bouton */
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 250px; /* Largeur maximale légèrement réduite */
+            margin-top: 1rem; /* Marge ajustée */
+            align-self: center;
+        }
+        .get-it-for-life-button:hover {
+            background-color: #550099;
+        }
+        /* Styles for the image and video container */
+        .image-video-container {
+            width: 150px; /* Largeur fixe */
+            height: 200px; /* Hauteur fixe */
+            margin-bottom: 1.5rem; /* Marge ajustée */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-video-container img{
+            height: 160px;
+            border-radius: 4px; 
+        }
+        .image-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .image-video-container video {
+            opacity: 0; /* Caché par default */
+        }
+        .image-video-container video.active {
+            opacity: 1; /* Visible quand actif */
+        }
+        /* Nouveaux styles pour la vidéo d'action plein écran */
+        #fullScreenLeftVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Couvrir toute la zone */
+            opacity: 0; /* Caché par défaut */
+            transition: opacity 0.5s ease-in-out;
+            z-index: 10; /* Assurez-vous qu'il est au-dessus du contenu statique quand il est actif */
+            border-radius: 1.5rem; /* Correspondre au border-radius du conteneur parent si nécessaire */
+        }
+        #fullScreenLeftVideo.active {
+            opacity: 1;
+        }
+        /* Style pour le nouveau titre de la vidéo */
+        #videoTitle {
+            position: absolute;
+            top: 1.5rem; /* Positionner en haut du conteneur gauche */
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.8rem; /* Taille de police pour le titre */
+            font-weight: bold;
+            opacity: 0; /* Caché par défaut */
+            transition: opacity 0.5s ease-in-out;
+            z-index: 20; /* Au-dessus de la vidéo */
+        }
+        #videoTitle.active {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Navigation Bar reste inchangé -->
             <!-- Navigation Bar -->
             <nav class="bg-white shadow-lg sticky top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 flex items-center">
-                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
-                                    <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
-                                </div>
-                                <span class="ml-2 text-xl font-bold text-blue-600">Grabbber</span>
-                            </div>
-                        </div>
-                        <div class="hidden md:flex items-center space-x-8">
-                            <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Promo</a>
-                            <a href="blog.html" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
-                            <a href="#mobile" class="text-gray-700 hover:text-blue-600 transition">Grabbber Extension</a>
-                            <div class="group relative">
-                                <div class="hidden group-hover:block absolute z-50 mt-2 w-80 bg-white rounded-md shadow-lg p-4 right-0">
-                                    <p class="text-sm text-gray-600">Find out the most downloaded videos from various areas such as Movies, Music, Entertainment, Adult and more</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:hidden flex items-center">
-                            <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                                <i class="fas fa-bars text-xl"></i>
-                            </button>
-                        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
+                        <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
                     </div>
-                    
-                    <!-- Mobile menu -->
-                    <div id="mobile-menu" class="hidden md:hidden">
-                        <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-b-lg shadow-lg">
-                            <a href="#promo" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 hover:shadow-xl transition duration-300">Promo</a>
-                            <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Blog</a>
-                            <a href="#mobile" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Grabbber Extension</a>
-                        </div>
-                    </div>
+                    <span class="ml-2 text-xl font-bold text-blue-600">Grabbber</span>
                 </div>
-            </nav>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Promo</a>
+                <a href="blog.html" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
+                <a href="grabbber-extension.html" class="text-gray-700 hover:text-blue-600 transition">Grabbber Extension</a>
+                <nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+    <div class="flex items-center space-x-8">
+      <!-- Autres liens ici si besoin -->
+      <div class="relative">
+        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
+          <span id="currentLang">EN</span>
+          <i class="fas fa-chevron-down ml-1"></i>
+        </button>
+        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+          <ul>
+            <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
+            <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
+            <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
+            <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
+            <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
+            <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
+            <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
+            <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
+            <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
+            <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+            </div>
+            
+            <div class="md:hidden flex items-center">
+                <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-b-lg shadow-lg">
+                <a href="#promo" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 hover:shadow-xl transition duration-300">Promo</a>
+                <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Blog</a>
+                <a href="grabbber-extension.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Grabbber Extension</a>
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+    <div class="flex items-center space-x-8">
+      <!-- Autres liens ici si besoin -->
+      <div class="relative">
+        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
+          <span id="currentLang">EN</span>
+          <i class="fas fa-chevron-down ml-1"></i>
+        </button>
+        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+          <ul>
+            <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
+            <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
+            <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
+            <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
+            <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
+            <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
+            <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
+            <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
+            <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
+            <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>   
+            </div>
+        </div>
+    </div>
+</nav>
 
             <div class="container mx-auto px-4 py-8 max-w-4xl">
                 <!-- Le contenu existant reste inchangé -->
@@ -323,11 +609,16 @@
                     <div id="results-list" class="divide-y divide-gray-200 max-h-80 overflow-y-auto"></div>
                 </div>
             </div>
+            <div class="banner-mobile">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+ <ins class="eas6a97888e2" data-zoneid="5654110"></ins> 
+ <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
 
               <!-- Features Section -->
               <section class="container mx-auto px-4 py-6 max-w-4xl" aria-labelledby="features-heading">
                   <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-                      <h2 id="features-heading" class="text-2xl font-semibold text-blue-600 mb-4">Download Videos</h2>
+                      <h2 id="features-heading" class="text-2xl font-semibold text-blue-600 mb-4">Video downloader Expected Features</h2>
                        
                       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                           <article class="bg-blue-50 p-4 rounded-lg text-center">
@@ -344,12 +635,17 @@
                            
                           <article class="bg-blue-50 p-4 rounded-lg text-center">
                               <div class="text-3xl text-blue-500 mb-2"><i class="fas fa-file-video" aria-hidden="true" title="MP4 format"></i></div>
-                              <h3 class="font-bold mb-2">MP4 format</h3>
+                              <h3 class="font-bold mb-2">MP4 format and High Quality</h3>
                               <p class="text-gray-600">Download multiple videos at once, Save files in HD quality.</p>
                           </article>
                       </div>
                   </div>
               </section>
+            <div class="banner-mobile">
+              <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+ <ins class="eas6a97888e2" data-zoneid="5654118"></ins> 
+ <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+ </div>
              
             <!-- How to Download Section -->
             <div class="container mx-auto px-4 py-6 max-w-4xl">
@@ -377,7 +673,12 @@
                     </div>
                 </div>
             </div>
-             
+            <div class="banner-mobile">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+ <ins class="eas6a97888e2" data-zoneid="5654120"></ins> 
+ <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+            </div>
+
             <!-- Video Demo Container -->
             <div class="container mx-auto px-4 py-6 max-w-4xl">
                 <div class="bg-white rounded-lg shadow-lg p-8 mb-8">  <!-- Padding augmenté de p-6 à p-8 -->
@@ -407,6 +708,11 @@
                 </div>
             </div>
              
+            <div class="banner-mobile">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+<img src="https://cdn.pawns.app/images/b/468.jpg" alt="Pawns.app">
+</a>
+</div>
             <!-- Features List Section -->
             <div class="container mx-auto px-4 py-6 max-w-4xl">
                 <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
@@ -420,7 +726,7 @@
                         </ul>
                         
                         <ul class="list-disc pl-5">
-                            <li class="mb-2">Download videos in mp4 or mp3 format</li>
+                            <li class="mb-2">Download videos in mp4</li>
                             <li class="mb-2">Works on any browser and operating system</li>
                             <li class="mb-2">Watermark-free downloads in HD quality</li>
                             <li class="mb-2">Import multiple video URLs via Excel file for faster batch processing</li>
@@ -428,6 +734,11 @@
                     </div>
                 </div>
             </div>
+             <div class="banner-mobile">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+<img src="https://cdn.pawns.app/images/b/468.jpg" alt="Pawns.app">
+</a>
+</div>
              
             <!-- FAQ Section -->
             <div class="container mx-auto px-4 py-6 max-w-4xl">
@@ -437,7 +748,7 @@
                     <div class="space-y-4">
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
-                                <span>Do I have to pay to use video download without watermark?</span>
+                                <span>Do I have to pay to use Grabbber for downloading videos ?</span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="px-4 py-3 bg-gray-50 hidden">
@@ -464,18 +775,34 @@
                                 <p class="text-gray-600">Videos are saved to your default download location in your browser. You can change this in your browser settings.</p>
                             </div>
                         </div>
-                        
+
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
-                                <span>Do I need to have an account to download videos?</span>
+                                <span>How many videos can i download at once with Grabbber?</span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="px-4 py-3 bg-gray-50 hidden">
-                                <p class="text-gray-600">No, you don't need to create an account or log in to use our service. Just paste the video URL and download.</p>
+                                <p class="text-gray-600">There is no limit ! You can download as many videos as you want at once. But we strongly recommend to stop at 10 at most</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="w-full px-4 py-3 text-left font-medium flex justify-between items-center hover:bg-gray-50">
+                                <span>Do I need to have an account to download videos with Grabbber?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="px-4 py-3 bg-gray-50 hidden">
+                                <p class="text-gray-600">No, you don't need to create an account or log in to use our service. Just paste as many video URLs as you want and download.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="banner-mobile">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+ <ins class="eas6a97888e2" data-zoneid="5654128"></ins> 
+ <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
             </div>
              
             <!-- Add FAQ Toggle Script -->
@@ -1009,41 +1336,42 @@
                 // Charger les téléchargements sauvegardés
                 loadSavedDownloads();
             });
+
             </script>
 
                 <footer class="bg-gray-900 text-white py-12">
-                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                            <div class="mx-auto md:mx-0 text-center md:text-left">
-                                <div class="flex items-center mb-4 justify-center md:justify-start">
-                                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
-                                        <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="ml-2 text-xl font-bold">Grabbber</span>
-                                </div>
-                                <p class="text-gray-400">Best free video downloader extension for chrome</p>
-                                <div class="flex space-x-4 mt-4 justify-center md:justify-start">
-                                    <a href="https://www.instagram.com/grabbber.site/#/" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                                    <a href="https://www.youtube.com/@grabbber.channel/#/" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <div class="mx-auto text-center md:text-left">
-                                <h3 class="text-lg font-semibold mb-4">Legal</h3>
-                                <ul class="space-y-2">
-                                    <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a></li>
-                                    <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Terms</a></li>
-                                    <li><a href="mailto:contact@grabbber.site" class="text-gray-400 hover:text-white transition">contact@grabbber.site</a></li>
-                                </ul>
-                            </div>
-                            <div class="text-center md:text-right mt-8 md:mt-0">
-                                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Promo</a>
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                            <p>&copy; 2025 Grabbber All rights reserved.</p>
-                        </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="mx-auto md:mx-0 text-center md:text-left">
+                <div class="flex items-center mb-4 justify-center md:justify-start">
+                    <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
+                        <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
                     </div>
-            </footer>
+                    <span class="ml-2 text-xl font-bold">Grabbber</span>
+                </div>
+                <p class="text-gray-400">Download multiple videos at once</p>
+                <div class="flex space-x-4 mt-4 justify-center md:justify-start">
+                    <a href="https://www.instagram.com/grabbber.site/#/" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@grabbber.channel/#/" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="mx-auto text-center md:text-left">
+                <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                <ul class="space-y-2">
+                    <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a></li>
+                    <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Terms</a></li>
+                    <li><a href="mailto:contact@grabbber.site" class="text-gray-400 hover:text-white transition">contact@grabbber.site</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-right mt-8 md:mt-0">
+                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Promo</a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Grabbber All rights reserved.</p>
+        </div>
+    </div>
+</footer>
     </div>
     
     <!-- Bannières de gauche - MODIFIÉ -->
@@ -1209,63 +1537,142 @@
             const centerAdContent = document.getElementById('centerAdContent');
             const centerAdClose = document.getElementById('centerAdClose');
             const centerAdTimer = document.getElementById('centerAdTimer');
-            
-            // Contenu des bannières (Exoclice et Pawn.app)
+
+            // 1. Nouveau contenu premium Grabbber (sera affiché en premier)
+           // Dans ton script de bannière rotative
+const grabbberPremiumBanner = `
+<div class="main-container grabbber-premium-banner">
+    <div class="left-section">
+        <div id="videoTitle" style="color: red;">Here's how Grabbber works:</div>
+        <div id="staticLeftContent">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">The #1 Video<br>Downloader</h1>
+            <p class="text-base md:text-lg mb-6">Download videos as you browse</p>
+            <span id="mobileGrabbberText" class="hidden md:hidden text-white text-xl font-bold mb-4">Grabbber</span>
+            <div class="image-video-container" id="mediaContainer">
+                <img id="mainImage" src="images/grabbber.png" alt="Main Image">
+                <video id="mainVideo" loop muted playsinline>
+                    <source src="videos/grabbber_demo_compressed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="flex space-x-6 items-center">
+                <i class="fab fa-youtube social-icon"></i>
+                <i class="fab fa-instagram social-icon"></i>
+                <i class="fab fa-tiktok social-icon"></i>
+                <span class="text-white text-base">and more</span>
+            </div>
+        </div>
+        <video id="fullScreenLeftVideo" loop muted playsinline class="absolute top-0 left-0 w-full h-full rounded-xl" style="display: none;">
+            <source src="videos/grabbber_demo_compressed.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="right-section">
+        <h2 class="text-xl font-semibold mb-3 text-gray-800">Get Full Ownership of Grabbber with One Payment.</h2>
+        <ul class="hidden md:block">
+            <li>
+                <span class="check-icon">&#10003;</span>
+                <span>Unlimited video downloads from all supported platforms (YouTube, Instagram, TikTok, Xvideos, and Pornhub)</span>
+            </li>
+            <li>
+                <span class="check-icon">&#10003;</span>
+                <span>Exclusive setup video guide showing you how to deploy Grabber on your PC for complete independence</span>
+            </li>
+            <li>
+                <span class="check-icon">&#10003;</span>
+                <span>True lifetime ownership - download as many videos as you want, whenever you want, with no recurring fees</span>
+            </li>
+        </ul>
+        <p class="md:hidden text-sm text-gray-700 mb-4">
+            Get Grabbber to download without limits videos from platforms like YouTube, Instagram, TikTok, Xvideos, and Pornhub;
+            exclusive setup guide for deploying Grabber on your PC;
+            true lifetime ownership with no recurring fees.
+        </p>
+        <a href="payment.html"><button class="get-it-for-life-button">Get it for life</button></a>
+    </div>
+</div>
+`;
+
+     document.addEventListener('DOMContentLoaded', () => {
+    const staticLeftContent = document.getElementById('staticLeftContent');
+    const fullScreenLeftVideo = document.getElementById('fullScreenLeftVideo');
+    const mainImage = document.getElementById('mainImage');
+    const videoTitle = document.getElementById('videoTitle');
+    const leftSection = document.querySelector('.left-section');
+    if (mainImage && fullScreenLeftVideo && staticLeftContent && videoTitle && leftSection) {
+        mainImage.src = 'images/grabbber.png';
+        fullScreenLeftVideo.querySelector('source').src = 'videos/grabbber_demo_compressed.mp4';
+        fullScreenLeftVideo.load();
+        setTimeout(() => {
+            staticLeftContent.style.opacity = '0';
+            setTimeout(() => {
+                staticLeftContent.style.display = 'none';
+                fullScreenLeftVideo.style.display = 'block';
+                fullScreenLeftVideo.classList.add('active');
+                fullScreenLeftVideo.play();
+                videoTitle.classList.add('active');
+                if (window.innerWidth < 768) {
+                    leftSection.classList.add('video-active-mobile-height');
+                }
+            }, 500);
+        }, 10000);
+    }
+});
+           
+
+            // 2. Exoclic Banner
+            const exoclicBanner = `<div id="exoclice-ad-container"></div>`;
+
+            // 3. Pawn.app Banner
+            const pawnBanner = `<a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/300.jpg" alt="Pawns.app">
+            </a>`;
+
+            // Ordre d'affichage : Grabbber Premium, Exoclic, Pawn.app
             const adContents = [
-                // Exoclice - Utiliser une div pour contenir le script
-                `<div id="exoclice-ad-container"></div>`,
-                
-                // Pawn.app
-                `<a href="https://pawns.app/?r=grabbber" target="_blank">
-                    <img src="https://cdn.pawns.app/images/b/300.jpg" alt="Pawns.app">
-                </a>`
+                grabbberPremiumBanner,
+                exoclicBanner,
+                pawnBanner
             ];
-            
+
             let currentAdIndex = 0;
             let timerInterval;
             let secondsLeft = 10;
             let adInterval;
-            
-            // Fonction pour afficher une bannière
+
             function showAd() {
-                // Réinitialiser le timer
                 secondsLeft = 10;
                 centerAdTimer.textContent = secondsLeft + 's';
+
                 centerAdClose.style.opacity = '0';
-                
-                // Afficher la bannière
+
                 centerAdContent.innerHTML = adContents[currentAdIndex];
-                
-                // Si c'est une bannière Exoclice, injecter le script après avoir défini le HTML
-                if (currentAdIndex === 0) {
+
+                // Injecter le script Exoclic si c'est la bannière Exoclic
+                if (currentAdIndex === 1) {
                     const script1 = document.createElement('script');
                     script1.async = true;
                     script1.type = 'application/javascript';
                     script1.src = 'https://a.magsrv.com/ad-provider.js';
                     document.getElementById('exoclice-ad-container').appendChild(script1);
-                    
+
                     const ins = document.createElement('ins');
                     ins.className = 'eas6a97888e2';
                     ins.setAttribute('data-zoneid', '5653420');
                     document.getElementById('exoclice-ad-container').appendChild(ins);
-                    
+
                     const script2 = document.createElement('script');
                     script2.textContent = "(AdProvider = window.AdProvider || []).push({\"serve\": {}})";
                     document.getElementById('exoclice-ad-container').appendChild(script2);
                 }
-                
+
                 centerAdContainer.style.display = 'block';
-                
-                // Alterner entre les types de bannières
                 currentAdIndex = (currentAdIndex + 1) % adContents.length;
-                
-                // Démarrer le timer
+
                 clearInterval(timerInterval);
                 timerInterval = setInterval(function() {
                     secondsLeft--;
                     centerAdTimer.textContent = secondsLeft + 's';
-                    
-                    // Afficher le bouton de fermeture après 10 secondes
                     if (secondsLeft <= 0) {
                         centerAdClose.style.opacity = '1';
                         clearInterval(timerInterval);
@@ -1273,25 +1680,19 @@
                     }
                 }, 1000);
             }
-            
-            // Fonction pour fermer la bannière
+
             function closeAd() {
                 centerAdContainer.style.display = 'none';
                 centerAdTimer.style.display = 'block';
                 clearInterval(timerInterval);
             }
-            
-            // Événement de clic sur le bouton de fermeture
+
             centerAdClose.addEventListener('click', closeAd);
-            
-            // Afficher la première bannière après 60 secondes
+
             setTimeout(function() {
                 showAd();
                 
-                // Configurer l'intervalle pour afficher une nouvelle bannière toutes les 60 secondes
                 adInterval = setInterval(function() {
-                    // Si la bannière est déjà fermée, en afficher une nouvelle
-                    // Sinon, fermer la bannière actuelle et en afficher une nouvelle
                     if (centerAdContainer.style.display === 'none') {
                         showAd();
                     } else {
@@ -1302,6 +1703,61 @@
             }, 60000); // Première bannière après 60 secondes
         });
     </script>
-    
+<script>
+const langBtn = document.getElementById('langBtn');
+const langDropdown = document.getElementById('langDropdown');
+langBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    langDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(e) {
+    if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+        langDropdown.classList.add('hidden');
+    }
+});
+document.querySelectorAll('#langDropdown a[data-lang]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.getAttribute('data-lang');
+        document.getElementById('currentLang').textContent = this.textContent.split(' ')[0];
+        langDropdown.classList.add('hidden');
+        if (lang === 'en') {
+            location.reload();
+        } else {
+            // Inject Google Translate only once
+            if (!window.googleTranslateLoaded) {
+                window.googleTranslateLoaded = true;
+                const gtScript = document.createElement('script');
+                gtScript.type = 'text/javascript';
+                gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                document.body.appendChild(gtScript);
+            }
+            window.googleTranslateElementInit = function() {
+                new window.google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,zh-CN,hi,es,fr,ar,bn,pt,ru,ja',
+                    layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+                setTimeout(function() {
+                    const select = document.querySelector('.goog-te-combo');
+                    if (select) {
+                        select.value = lang;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }, 1000);
+            };
+            // Si déjà chargé, tente de changer la langue directement
+            setTimeout(function() {
+                const select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.value = lang;
+                    select.dispatchEvent(new Event('change'));
+                }
+            }, 1500);
+        }
+    });
+});
+</script>
+<div id="google_translate_element" style="display:none"></div>
 </body>
 </html>

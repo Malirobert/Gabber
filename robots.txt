@@ -1,6 +1,4 @@
 User-agent: *
-Allow: /$
-Disallow: /
+Allow: /
 
-# Sitemap location
-Sitemap: https://your-site.com/sitemap.xml
+Sitemap: https://grabbber.site/sitemap.xml

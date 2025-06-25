@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabbber Lifetime Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 2px solid #a21caf;
+        }
+        .title {
+            color: #a21caf;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 4em;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 20px 0;
+        }
+        .period {
+            color: #64748b;
+            font-size: 1.2em;
+        }
+        .payment-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #a21caf;
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-button:hover {
+            background: #86198f;
+            transform: translateY(-2px);
+        }
+        .payment-button i {
+            font-size: 1.2em;
+        }
+        .instructions {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .instructions h2 {
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .step-number {
+            background: #a21caf;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .step-content {
+            flex-grow: 1;
+        }
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .step-description {
+            color: #64748b;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            animation: slideUp 0.3s ease;
+        }
+        .notification.success { 
+            background-color: #10B981; 
+        }
+        @keyframes slideUp {
+            from { transform: translate(-50%, 100%); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+        .paypal-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .paypal-email {
+            font-family: monospace;
+            font-size: 1.1em;
+            color: #a21caf;
+        }
+        .copy-button {
+            background: #a21caf;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        .copy-button:hover {
+            background: #86198f;
+        }
+        .instagram-link {
+            color: #a21caf;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .instagram-link:hover {
+            text-decoration: underline;
+        }
+        .lifetime-badge {
+            background: #a21caf;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="lifetime-badge">LIFETIME ACCESS</span>
+            <h1 class="title">Grabbber Premium</h1>
+            <div class="price">$99.99</div>
+            <div class="period">one-time payment</div>
+            <a href="https://paypal.me/RobertRobii/99.99" target="_blank" class="payment-button">
+                <i class="fab fa-paypal"></i>
+                Pay with PayPal
+            </a>
+        </div>
+
+        <div class="instructions">
+            <h2>How to Get Access</h2>
+            <ol class="steps">
+                <li class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Send Payment via PayPal</div>
+                        <div class="step-description">
+                            Click the PayPal button above or send $99.99 to:
+                            <div class="paypal-info">
+                                <span class="paypal-email">paypal.me/RobertRobii</span>
+                                <button onclick="copyPayPalLink()" class="copy-button">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Provide Your Email</div>
+                        <div class="step-description">
+                            In the "What's this for?" field, make sure to enter the email address associated with your Grabbber account. This must be the same email you used to create your account, as we'll use it to send a private link leading to a private Google drive folder containing a lifetime version of Grabbber and Grabbber AI Agents and along with instructions explaining how to set it up correctly.
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Get Your Private Access</div>
+                        <div class="step-description">
+                            We'll send you your lifetime private access link to your email within 30-60 minutes. Please make sure to check your spam folder and verify that your email address is correct and functional.
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function copyPayPalLink() {
+            navigator.clipboard.writeText('paypal.me/RobertRobii')
+                .then(() => showNotification('PayPal link copied!'))
+                .catch(err => console.error('Failed to copy:', err));
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

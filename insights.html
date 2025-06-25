@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabbber - Most Downloaded Videos</title>
+    <link rel="icon" type="image/png" href="images/grabbber.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .category-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .video-card {
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <span class="ml-2 text-2xl font-bold text-blue-600">Grabbber</span>
+                </div>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière en haut -->
+    <div class="w-full flex justify-center py-4 bg-gray-100">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e2" data-zoneid="5640168"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-3xl font-bold text-center mb-2">Most Downloaded Videos</h1>
+        <p class="text-gray-600 text-center mb-8">Discover what others are downloading the most</p>
+
+        <!-- No Videos Message -->
+        <div class="border border-gray-200 rounded-lg p-8 mb-12 text-center">
+            <div class="text-gray-400 mb-4">
+                <i class="fas fa-video text-6xl"></i>
+            </div>
+            <p class="text-xl text-gray-600">No videos downloaded yet</p>
+        </div>
+
+        <!-- Categories Filter -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="category-button active px-6 py-2 rounded-full bg-gray-200 hover:bg-blue-600 hover:text-white transition">
+                All
+            </button>
+            <button class="category-button px-6 py-2 rounded-full bg-gray-200 hover:bg-blue-600 hover:text-white transition">
+                Music
+            </button>
+            <button class="category-button px-6 py-2 rounded-full bg-gray-200 hover:bg-blue-600 hover:text-white transition">
+                Movies
+            </button>
+            <button class="category-button px-6 py-2 rounded-full bg-gray-200 hover:bg-blue-600 hover:text-white transition">
+                Entertainment
+            </button>
+            <button class="category-button px-6 py-2 rounded-full bg-gray-200 hover:bg-blue-600 hover:text-white transition">
+                Adult
+            </button>
+        </div>
+
+        <!-- Videos Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Video Cards will be dynamically populated here -->
+        </div>
+    </main>
+
+    <!-- Bannière Pawns.app en bas -->
+    <div class="w-full flex justify-center py-4 bg-gray-100 mb-8">
+        <a href="https://pawns.app/?r=grabbber" target="_blank">
+            <img src="https://cdn.pawns.app/images/b/630.jpg" alt="Pawns.app">
+        </a>
+    </div>
+
+    <!-- Widget publicitaire fixe -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+        <ins class="eas6a97888e17" data-zoneid="5640714"></ins> 
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+
+    <script>
+        // Simulated video data (in a real application, this would come from a backend)
+        const videos = [
+            {
+                title: "Summer Hit 2025",
+                thumbnail: "path/to/thumbnail1.jpg",
+                category: "Music",
+                views: "1.2M",
+                platform: "YouTube"
+            },
+            // Add more video objects here
+        ];
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-button');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Filter videos based on category
+                const category = button.textContent.trim();
+                filterVideos(category);
+            });
+        });
+
+        function filterVideos(category) {
+            const videosContainer = document.querySelector('.grid');
+            videosContainer.innerHTML = ''; // Clear current videos
+
+            // Filter and render videos (to be implemented)
+            // This would typically filter the videos array based on category
+            // and create video cards for each matching video
+        }
+
+        // Initialize with all videos
+        filterVideos('All');
+    </script>
+</body>
+</html>
