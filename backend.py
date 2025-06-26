@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file, Response, stream_with_context
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import yt_dlp
 import os
@@ -228,48 +228,47 @@ def get_download_status(download_id):
 
 @app.route('/download/<download_id>/<file_name>', methods=['GET'])
 def get_downloaded_file(download_id, file_name):
-    # Sanitize le nom de fichier reçu de l'URL, bien que nous utilisions le chemin stocké en priorité.
+    # Sanitize le nom de fichier reçu de l'URL
     file_name = sanitize_filename(file_name)
     
-    status = download_status.get(download_id)
-    if status and status['status'] == 'completed':
-        # Obtenir le chemin du fichier depuis le statut, c'est la méthode la plus fiable
-        file_path_str = status.get('file_path')
-        
-        # Logique de secours pour trouver le fichier si file_path n'est pas dans le statut
-        if not file_path_str:
-            file_path_str = str(DOWNLOAD_FOLDER / file_name)
-            if not os.path.exists(file_path_str):
+    # Le reste de la fonction reste inchangé
+    # Vérifier si le téléchargement est terminé
+    if download_id in download_status and download_status[download_id]['status'] == 'completed':
+        # Obtenir le chemin du fichier
+        if 'file_path' in download_status[download_id] and download_status[download_id]['file_path']:
+            file_path = download_status[download_id]['file_path']
+            logger.info(f"Envoi du fichier: {file_path}")
+        else:
+            # Ancienne méthode de recherche de fichier
+            file_path = str(DOWNLOAD_FOLDER / file_name)
+            logger.info(f"Recherche du fichier: {file_path}")
+            
+            # Si le fichier n'existe pas, essayer avec l'extension .part ou d'autres extensions
+            if not os.path.exists(file_path):
+                # Essayer différentes extensions
                 for ext in ['.part', '.mp4', '.m4a', '.mp3', '.webm']:
                     test_path = str(DOWNLOAD_FOLDER / (os.path.splitext(file_name)[0] + ext))
                     if os.path.exists(test_path):
-                        file_path_str = test_path
-                        logger.info(f"Fichier trouvé avec extension alternative: {file_path_str}")
+                        file_path = test_path
+                        logger.info(f"Fichier trouvé avec extension alternative: {file_path}")
                         break
         
-        file_path = Path(file_path_str)
-
-        if file_path.exists():
-            logger.info(f"Début de l'envoi en streaming pour le fichier : {file_path}")
-
-            def generate():
-                with open(file_path, 'rb') as f:
-                    while True:
-                        chunk = f.read(8192)  # Envoyer par blocs de 8KB
-                        if not chunk:
-                            break
-                        yield chunk
-            
+        # Vérifier si le fichier existe
+        if os.path.exists(file_path):
+            # Pour que le téléchargement apparaisse dans l'historique de Chrome,
+            # nous devons utiliser send_file avec as_attachment=True
             mimetype = 'video/mp4'
-            if file_path.suffix.lower() in ['.m4a', '.mp3']:
+            if file_path.endswith('.m4a') or file_path.endswith('.mp3'):
                 mimetype = 'audio/mp4'
             
-            res = Response(stream_with_context(generate()), mimetype=mimetype)
-            res.headers['Content-Disposition'] = f'attachment; filename="{file_path.name}"'
-            res.headers['Content-Length'] = os.path.getsize(file_path)
-            return res
+            return send_file(
+                file_path,
+                mimetype=mimetype,
+                as_attachment=True,
+                download_name=os.path.basename(file_path)
+            )
     
-    return jsonify({'error': 'File not found or download not complete'}), 404
+    return jsonify({'error': 'File not found'}), 404
 
 @app.route('/formats/<video_id>', methods=['GET'])
 def get_formats(video_id):
