@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Page principale (index.html) -->
     <url>
+<<<<<<< HEAD
         <loc>https://grabbber.site/index.html</loc>
         <lastmod>2025-06-30</lastmod>
+=======
+        <loc>https://grabbber.site/</loc>
+        <lastmod>2025-06-26</lastmod>
+>>>>>>> 88a122a8185929acd55b391d70becbe0e09115b4
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -11,8 +16,13 @@
     <!-- Page de l'extension (grabbber-extension.html) -->
     <url>
         <loc>https://grabbber.site/grabbber-extension.html</loc>
+<<<<<<< HEAD
         <lastmod>2025-06-30</lastmod>
         <changefreq>daily</changefreq>
+=======
+        <lastmod>2025-06-26</lastmod>
+        <changefreq>weekly</changefreq>
+>>>>>>> 88a122a8185929acd55b391d70becbe0e09115b4
         <priority>0.9</priority>
     </url>
 
@@ -65,14 +75,23 @@
     <url>
         <loc>https://grabbber.site/payment.html</loc>
         <lastmod>2025-06-25</lastmod>
+<<<<<<< HEAD
         <changefreq>monthly</changefreq>
+=======
+        <changefreq>yearly</changefreq>
+>>>>>>> 88a122a8185929acd55b391d70becbe0e09115b4
         <priority>0.5</priority>
     </url>
     <!-- Page de confirmation de paiement (si accessible directement et indexable) -->
     <url>
         <loc>https://grabbber.site/payment_confirm_lifetime.html</loc>
+<<<<<<< HEAD
         <lastmod>2025-06-30</lastmod>
         <changefreq>weekly</changefreq>
+=======
+        <lastmod>2025-06-25</lastmod>
+        <changefreq>never</changefreq>
+>>>>>>> 88a122a8185929acd55b391d70becbe0e09115b4
         <priority>0.3</priority>
     </url>
 </urlset>
