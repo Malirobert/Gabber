@@ -3,7 +3,7 @@
     <!-- Page principale (index.html) -->
     <url>
         <loc>https://grabbber.site/index.html</loc>
-        <lastmod>2025-06-26</lastmod>
+        <lastmod>2025-06-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -11,8 +11,8 @@
     <!-- Page de l'extension (grabbber-extension.html) -->
     <url>
         <loc>https://grabbber.site/grabbber-extension.html</loc>
-        <lastmod>2025-06-26</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2025-06-30</lastmod>
+        <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
 
@@ -21,28 +21,28 @@
     <url>
         <loc>https://grabbber.site/blog/Top-5-youtube-video-downloaders-2025.html</loc>
         <lastmod>2025-06-25</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Top 5 TikTok Free Video Downloaders 2025 -->
     <url>
         <loc>https://grabbber.site/blog/Top-5-Titkok-free-video-dowmloaders-2025.html</loc>
         <lastmod>2025-06-25</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Top 5 Instagram Reels Downloaders 2025 -->
     <url>
         <loc>https://grabbber.site/blog/Top-5-Instagram-reels-downloaders-2025.html</loc>
         <lastmod>2025-06-25</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Best Free Adult Content Downloaders 2025 -->
     <url>
         <loc>https://grabbber.site/blog/Best-free-adult-content-downloaders-2025.html</loc>
         <lastmod>2025-06-25</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
@@ -65,14 +65,14 @@
     <url>
         <loc>https://grabbber.site/payment.html</loc>
         <lastmod>2025-06-25</lastmod>
-        <changefreq>yearly</changefreq>
+        <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <!-- Page de confirmation de paiement (si accessible directement et indexable) -->
     <url>
-        <loc>https://grabbber.site/payment_confirm_lifetimel.html</loc>
-        <lastmod>2025-06-25</lastmod>
-        <changefreq>never</changefreq>
+        <loc>https://grabbber.site/payment_confirm_lifetime.html</loc>
+        <lastmod>2025-06-30</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.3</priority>
     </url>
 </urlset>

@@ -349,94 +349,101 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <div id="google_translate_element" style="position: absolute; top: -1000px; left: -1000px;"></div>
-    <!-- Navigation Bar reste inchangé -->
-            <!-- Navigation Bar -->
-            <nav class="bg-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
-                        <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Logo Grabbber">
+                            <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold text-blue-600">Grabbber</span>
                     </div>
-                    <span class="ml-2 text-xl font-bold text-blue-600">Grabbber</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="relative group">
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Pawns.app</a>
+                        <div class="absolute hidden group-hover:block bg-white border border-gray-200 p-2 rounded-md shadow-lg z-50 w-64" style="transform: translateX(-25%);">
+                            <p class="text-center text-gray-700 text-sm">
+                                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <a href="blog.html" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
+                    <a href="grabbber-extension.html" class="text-gray-700 hover:text-blue-600 transition">Grabbber Extension</a>
+                    <div class="relative">
+                        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
+                          <span id="currentLang">EN</span>
+                          <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                          <ul>
+                            <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
+                            <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
+                            <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
+                            <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
+                            <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
+                            <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
+                            <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
+                            <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
+                            <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
+                            <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <div class="relative group">
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-3 py-1.5 rounded-md hover:shadow-xl transition duration-300 text-sm mr-2">Pawns.app</a>
+                        <div class="absolute hidden group-hover:block bg-white text-gray-700 p-2 rounded-md shadow-lg z-50 w-64 right-0 mt-2">
+                            <p class="text-center text-sm">
+                                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3
+                            </p>
+                        </div>
+                    </div>
+                    <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Promo</a>
-                <a href="blog.html" class="text-gray-700 hover:text-blue-600 transition">Blog</a>
-                <a href="grabbber-extension.html" class="text-gray-700 hover:text-blue-600 transition">Grabbber Extension</a>
-                <nav class="bg-white shadow-lg sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
-    <div class="flex items-center space-x-8">
-      <!-- Autres liens ici si besoin -->
-      <div class="relative">
-        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
-          <span id="currentLang">EN</span>
-          <i class="fas fa-chevron-down ml-1"></i>
-        </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-          <ul>
-            <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
-            <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
-            <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
-            <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
-            <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
-            <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
-            <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
-            <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
-            <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
-            <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-            </div>
-            
-            <div class="md:hidden flex items-center">
-                <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
 
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-b-lg shadow-lg">
-                <a href="#promo" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 hover:shadow-xl transition duration-300">Promo</a>
-                <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Blog</a>
-                <a href="grabbber-extension.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Grabbber Extension</a>
-             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
-    <div class="flex items-center space-x-8">
-      <!-- Autres liens ici si besoin -->
-      <div class="relative">
-        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
-          <span id="currentLang">EN</span>
-          <i class="fas fa-chevron-down ml-1"></i>
-        </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-          <ul>
-            <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
-            <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
-            <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
-            <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
-            <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
-            <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
-            <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
-            <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
-            <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
-            <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>   
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white rounded-b-lg shadow-lg">
+                    <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Blog</a>
+                    <a href="grabbber-extension.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">Grabbber Extension</a>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+                        <div class="flex items-center space-x-8">
+                          <!-- Autres liens ici si besoin -->
+                          <div class="relative">
+                            <button id="langBtnMobile" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 transition">
+                              <span id="currentLangMobile">EN</span>
+                              <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                            <div id="langDropdownMobile" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                              <ul>
+                                <li><a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
+                                <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 hover:bg-gray-100">中文 (Chinese)</a></li>
+                                <li><a href="#" data-lang="hi" class="block px-4 py-2 hover:bg-gray-100">हिन्दी (Hindi)</a></li>
+                                <li><a href="#" data-lang="es" class="block px-4 py-2 hover:bg-gray-100">Español (Spanish)</a></li>
+                                <li><a href="#" data-lang="fr" class="block px-4 py-2 hover:bg-gray-100">Français (French)</a></li>
+                                <li><a href="#" data-lang="ar" class="block px-4 py-2 hover:bg-gray-100">العربية (Arabic)</a></li>
+                                <li><a href="#" data-lang="bn" class="block px-4 py-2 hover:bg-gray-100">বাংলা (Bengali)</a></li>
+                                <li><a href="#" data-lang="pt" class="block px-4 py-2 hover:bg-gray-100">Português (Portuguese)</a></li>
+                                <li><a href="#" data-lang="ru" class="block px-4 py-2 hover:bg-gray-100">Русский (Russian)</a></li>
+                                <li><a href="#" data-lang="ja" class="block px-4 py-2 hover:bg-gray-100">日本語 (Japanese)</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>   
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
             <div class="container mx-auto px-4 py-8 max-w-4xl">
                 <!-- Le contenu existant reste inchangé -->
@@ -587,7 +594,7 @@
                             
                             videoContainer.addEventListener('click', function() {
                                 // Dans le script de la vidéo démo
-                                this.innerHTML = `<iframe class="absolute inset-0 w-full h-full" style="min-height: 350px;" src="about:blank" title="Video demonstration of Grabbber multi-download feature" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                                this.innerHTML = `<iframe class="absolute inset-0 w-full h-full" style="min-height: 350px;" src="videos/Grabbber_mobile_demo.mp4" title="Video demonstration of Grabbber multi-download feature" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                                 // Note: Replace 'about:blank' with your actual video URL
                             });
                         });
@@ -595,9 +602,16 @@
                 </div>
             </div>
              
+            <div class="text-center text-gray-700 p-2 lg:hidden">
+                <p>
+                    Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                    <i class="fas fa-arrow-right text-purple-600 mx-1"></i>
+                    <a href="https://pawns.app/?r=grabbber" target="_blank" class="text-purple-600 font-bold hover:underline">Pawns.app</a>
+                </p>
+            </div>
             <div class="banner-mobile">
             <a href="https://pawns.app/?r=grabbber" target="_blank">
-<img src="https://cdn.pawns.app/images/b/468.jpg" alt="Pawns.app">
+<img src="https://cdn.pawns.app/images/b/630.jpg" alt="Pawns.app">
 </a>
 </div>
             <!-- Features List Section -->
@@ -621,9 +635,16 @@
                     </div>
                 </div>
             </div>
+             <div class="text-center text-gray-700 p-2 lg:hidden">
+                <p>
+                    Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                    <i class="fas fa-arrow-right text-purple-600 mx-1"></i>
+                    <a href="https://pawns.app/?r=grabbber" target="_blank" class="text-purple-600 font-bold hover:underline">Pawns.app</a>
+                </p>
+            </div>
              <div class="banner-mobile">
             <a href="https://pawns.app/?r=grabbber" target="_blank">
-<img src="https://cdn.pawns.app/images/b/468.jpg" alt="Pawns.app">
+<img src="https://cdn.pawns.app/images/b/630.jpg" alt="Pawns.app">
 </a>
 </div>
              
@@ -1251,7 +1272,7 @@
                 </ul>
             </div>
             <div class="text-center md:text-right mt-8 md:mt-0">
-                <a href="#promo" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Promo</a>
+                <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Pawns.app</a>
             </div>
         </div>
         <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
@@ -1461,9 +1482,17 @@ const grabbberPremiumBanner = `
             const exoclicBanner = `<div id="exoclice-ad-container"></div>`;
 
             // 3. Pawn.app Banner
-            const pawnBanner = `<a href="https://pawns.app/?r=grabbber" target="_blank">
+            const pawnBanner = `<div>
+                <div class="text-center text-gray-700 p-2">
+                                <p>
+                                    Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                                    <i class="fas fa-arrow-right text-purple-600 mx-1"></i>
+                                    <a href="https://pawns.app/?r=grabbber" target="_blank" class="text-purple-600 font-bold hover:underline">Pawns.app</a>
+                                </p>
+                            </div>
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
                 <img src="https://cdn.pawns.app/images/b/300.jpg" alt="Pawns.app">
-            </a>`;
+            </a></div>`;
 
             // Ordre d'affichage : Grabbber Premium, Exoclic, Pawn.app
             const adContents = [
