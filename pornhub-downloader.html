@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pornhub Downloader - Download and Save your favorite Pornhub and Xvideos videos</title>
+    <meta name="description" content="Download Pornhub and Xvideos videos in HD for free with Grabbber. No registration needed. Fast, easy, unlimited.">
+    <meta name="keywords" content="pornhub downloader, xvideos downloader, download pornhub video, download xvideos video, pornhub to mp4, xvideos to mp4, free pornhub downloader, free xvideos downloader, pornhub video download, xvideos video download, adult video downloader, grabbber">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Grabbber">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Pornhub Video Downloader - Xvideos Video Downloader">
+    <meta property="og:description" content="Download Pornhub and Xvideos videos in HD for free with Grabbber. No registration needed. Fast, easy, unlimited.">
+    <meta property="og:image" content="https://grabbber.site/images/grabbber.jpg">
+    <meta property="og:url" content="https://grabbber.site/pornhub-xvideos-video-downloader">
+    <meta property="og:type" content="website">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pornhub Video Downloader - Xvideos Video Downloader">
+    <meta name="twitter:description" content="Download Pornhub and Xvideos videos in HD for free with Grabbber. No registration needed. Fast, easy, unlimited.">
+    <meta name="twitter:image" content="https://grabbber.site/images/grabbber.jpg">
+    <link rel="canonical" href="https://grabbber.site/pornhub-downloader">
+    <link rel="icon" type="image/png" href="https://grabbber.site/images/grabbber.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom styles for the Inter font */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #1a1a1a; /* Dark background inspired by adult sites */
+            color: #f0f0f0; /* Light text color */
+        }
+        /* Custom gradient for logo and buttons */
+        .gradient-bg {
+            background: linear-gradient(90deg, #ff007a 0%, #ff5200 100%); /* Vibrant pink-orange gradient */
+        }
+        .animate-gradient-x {
+            background-size: 200% auto;
+            animation: gradient-x 3s linear infinite;
+        }
+        @keyframes gradient-x {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Aspect ratio utility for responsive images */
+        .aspect-w-16 {
+            position: relative;
+            width: 100%;
+        }
+        .aspect-h-9 {
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        .aspect-w-16 > *,
+        .aspect-h-9 > * {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* Custom style for FAQ accordion */
+        .accordion-button {
+            transition: background-color 0.3s ease;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 400px; /* Increased for potentially longer content */
+            transition: max-height 0.5s ease-in;
+        }
+        /* Darker card background */
+        .card-dark {
+            background-color: #2a2a2a;
+            border-color: #4a4a4a;
+        }
+        .text-accent {
+            color: #ff5200; /* Orange accent color */
+        }
+        .bg-accent {
+            background-color: #ff5200; /* Orange accent color */
+        }
+        .hover\:bg-accent-dark:hover {
+            background-color: #e04a00; /* Darker orange on hover */
+        }
+        .border-accent {
+            border-color: #ff5200;
+        }
+        /* === PUBS LATÉRALES & WIDGET === */
+        .ad-left-container, .ad-right-container {
+            position: absolute;
+            top: 80px;
+            width: 160px;
+            z-index: 50;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .ad-left-container { left: 0; }
+        .ad-right-container { right: 0; }
+        .ad-item { width: 160px; background: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); pointer-events: auto; }
+        .sticky-bottom-ad {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 350px;
+            z-index: 1000;
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+            padding: 8px 0 0 0;
+            pointer-events: auto;
+            border-radius: 16px 16px 0 0;
+        }
+        @media (max-width: 1020px) {
+            .ad-left-container, .ad-right-container, .sticky-bottom-ad { display: none !important; }
+        }
+        @media (max-width: 1020px) {
+            .sticky-bottom-ad { display: none !important; }
+        }
+        .banner-desktop { display: none; }
+        @media (max-width: 1020px) {
+            .banner-desktop { display: flex !important; }
+        }
+        @media (min-width: 1021px) {
+            .banner-desktop { display: none !important; }
+        }
+        .banner-mobile { display: none; }
+        @media (max-width: 1020px) {
+            .banner-mobile { display: flex !important; }
+        }
+        @media (min-width: 1021px) {
+            .banner-mobile { display: none !important; }
+        }
+    </style>
+     <style>
+       
+        .main-container {
+              display: flex;
+              flex-direction: row; /* Force sections to be side-by-side */
+              background-color: #fff;
+              border-radius: 1.5rem; /* Rounded corners for the main container */
+              box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+              overflow: hidden; /* Ensure no scrollbars on the main container itself */
+              max-width: 360px; /* Fixed max-width for the main container */
+              max-height: 400px; /* Fixed max-height for the main container */
+              width: 100%; /* Takes full available width up to max-width */
+              height: 100%; /* Takes full available height up to max-height */
+          }
+          
+          .left-section {
+              background: linear-gradient(180deg, #1a2a6c, #0f1c40); /* Dark blue gradient */
+              color: white;
+              display: flex;
+              flex-direction: column;
+              justify-content: center; /* Vertical centering */
+              align-items: center; /* Horizontal centering */
+              padding: 0.75rem 0.5rem; /* Adjusted padding to fit */
+              text-align: center;
+              flex: 3; /* Takes 3/5 of the available width */
+          }
+          .left-section h1 {
+              font-size: 1.4rem; /* Adjusted title size */
+              line-height: 1.1; /* Reduced line height */
+              margin-bottom: 0.4rem;
+          }
+          .left-section p {
+              font-size: 0.8rem; /* Adjusted paragraph size */
+              margin-bottom: 0.6rem;
+          }
+          #grabbberTextDisplay {
+              font-size: 1.6rem; /* Adjusted "Grabbber" text size */
+              font-weight: bold;
+              margin-bottom: 0.6rem;
+          }
+          /* Style for Font Awesome icons */
+          .social-icon {
+              font-size: 1.6rem; /* Adjusted icon size */
+              color: white; /* Icon color */
+          }
+          .left-section .flex { /* Targets the icon container */
+              flex-direction: column; /* Forces icons to stack vertically */
+              align-items: center; /* Centers icons horizontally */
+              margin-bottom: 0; /* No bottom margin */
+              padding-top: 0.2rem; /* Small padding for icon spacing */
+          }
+          .left-section .flex > *:not(:last-child) {
+              margin-bottom: 0.2rem; /* Spacing between stacked icons */
+          }
+     
+     
+          .right-section {
+              padding: 0.75rem 0.5rem; /* Adjusted padding to fit */
+              flex: 2; /* Takes 2/5 of the available width */
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between; /* Distributes space between title, text, button */
+          }
+          .right-section h2 {
+              margin-top: 0; /* Title always at the top */
+              margin-bottom: 0.4rem; /* Margin below title */
+              font-size: 0.95rem; /* Adjusted title size */
+          }
+          .right-section p {
+              font-size: 0.6rem; /* Very small text size for the long sentence */
+              line-height: 1.2;
+              margin-top: auto; /* Pushes text to the middle */
+              margin-bottom: auto; /* Pushes text to the middle */
+          }
+          .get-it-for-life-button {
+              background-color: #6a0dad; /* Purple background for button */
+              color: white;
+              padding: 0.4rem 0.8rem; /* Smaller button */
+              border-radius: 0.75rem; /* Rounded corners for button */
+              font-weight: 600;
+              transition: background-color 0.3s ease;
+              width: 100%; /* Takes full available width */
+              margin-top: 0.6rem; /* Margin above the button */
+              align-self: center;
+              font-size: 0.7rem; /* Adjusted button text size */
+          }
+          .get-it-for-life-button:hover {
+              background-color: #550099;
+          }
+      </style>
+    
+</head>
+<body class="antialiased">
+    <!-- PUBS LATÉRALES & WIDGET -->
+    <div class="ad-left-container">
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677732"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        <!-- Nouvelle Pawn.app à gauche -->
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        <!-- Nouvelle Exoclic à gauche (zoneid 5678154) -->
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5678154"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677742"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677746"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <!-- Nouvelle Pawn.app à gauche (fin) -->
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        
+    </div>
+    <div class="ad-right-container">
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677736"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        <!-- Nouvelle Pawn.app à droite -->
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        <!-- Nouvelle Exoclic à droite (zoneid 5678156) -->
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5678156"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677744"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <div class="ad-item">
+            <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+            <ins class="eas6a97888e2" data-zoneid="5677748"></ins>
+            <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+        </div>
+        <!-- Nouvelle Pawn.app à droite (fin) -->
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+        <div class="ad-item">
+            <a href="https://pawns.app/?r=grabbber" target="_blank">
+                <img src="https://cdn.pawns.app/images/b/160.jpg" alt="Pawns.app">
+            </a>
+        </div>
+    </div>
+    <div class="sticky-bottom-ad">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e17" data-zoneid="5677750"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+    <div id="google_translate_element" style="position: absolute; top: -1000px; left: -1000px;"></div>
+    <!-- Navigation Bar -->
+    <nav class="bg-black shadow-lg sticky top-0 z-50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Grabbber Logo">
+                            <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold text-white">Grabbber</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="relative group">
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300 font-bold">Get Paid</a>
+                        <div class="absolute hidden group-hover:block bg-gray-800 border border-gray-700 p-3 rounded-md shadow-lg z-50 w-64" style="transform: translateX(-25%);">
+                            <p class="text-center text-gray-300 text-sm">
+                                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income has never been that easy with Pawns.app. Sign up now and get $3!
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://grabbber.site/" class="text-gray-300 hover:text-accent transition duration-200">Similar Downloaders</a>
+                    <a href="video-downloader-extension.html" class="text-gray-300 hover:text-accent transition duration-200">Buy Grabbber Extension</a>
+                    <div class="relative">
+                        <button id="langBtn" class="flex items-center px-3 py-2 rounded-md text-gray-300 hover:text-accent transition duration-200">
+                            <span id="currentLang">EN</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-50 border border-gray-700">
+                            <ul>
+                                <li><a href="#" data-lang="en" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">English</a></li>
+                                <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">中文 (Chinese)</a></li>
+                                <li><a href="#" data-lang="hi" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">हिन्दी (Hindi)</a></li>
+                                <li><a href="#" data-lang="es" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Español (Spanish)</a></li>
+                                <li><a href="#" data-lang="fr" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Français (French)</a></li>
+                                <li><a href="#" data-lang="ar" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">العربية (Arabic)</a></li>
+                                <li><a href="#" data-lang="bn" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">বাংলা (Bengali)</a></li>
+                                <li><a href="#" data-lang="pt" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Português (Portuguese)</a></li>
+                                <li><a href="#" data-lang="ru" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Русский (Russian)</a></li>
+                                <li><a href="#" data-lang="ja" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">日本語 (Japanese)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <div class="relative group">
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-3 py-1.5 rounded-md hover:shadow-xl transition duration-300 text-sm mr-2 font-bold">Get Paid</a>
+                        <div class="absolute hidden group-hover:block bg-gray-800 text-gray-300 p-2 rounded-md shadow-lg z-50 w-64 right-0 mt-2 border border-gray-700">
+                            <p class="text-center text-sm">
+                                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income has never been that easy with Pawns.app. Sign up now and get $3
+                            </p>
+                        </div>
+                    </div>
+                    <button class="text-gray-300 hover:text-accent" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-black rounded-b-lg shadow-lg border-t border-gray-700">
+                    <a href="https://grabbber.site/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-accent hover:bg-gray-800 transition">Similar Downloaders</a>
+                    <a href="video-downloader-extension.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-accent hover:bg-gray-800 transition">Buy Grabbber Extension</a>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+                        <div class="flex items-center space-x-8">
+                            <div class="relative">
+                                <button id="langBtnMobile" class="flex items-center px-3 py-2 rounded-md text-gray-300 hover:text-accent transition">
+                                    <span id="currentLangMobile">EN</span>
+                                    <i class="fas fa-chevron-down ml-1"></i>
+                                </button>
+                                <div id="langDropdownMobile" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-50 border border-gray-700">
+                                    <ul>
+                                        <li><a href="#" data-lang="en" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">English</a></li>
+                                        <li><a href="#" data-lang="zh-CN" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">中文 (Chinese)</a></li>
+                                        <li><a href="#" data-lang="hi" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">हिन्दी (Hindi)</a></li>
+                                        <li><a href="#" data-lang="es" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Español (Spanish)</a></li>
+                                        <li><a href="#" data-lang="fr" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Français (French)</a></li>
+                                        <li><a href="#" data-lang="ar" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">العربية (Arabic)</a></li>
+                                        <li><a href="#" data-lang="bn" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">বাংলা (Bengali)</a></li>
+                                        <li><a href="#" data-lang="pt" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Português (Portuguese)</a></li>
+                                        <li><a href="#" data-lang="ru" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Русский (Russian)</a></li>
+                                        <li><a href="#" data-lang="ja" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">日本語 (Japanese)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-extrabold text-accent mb-4 drop-shadow-lg">Pornhub Downloader</h1>
+            <p class="text-xl text-gray-300 mb-4">Download your favorite videos from Pornhub and Xvideos, with ease!</p>
+            <div class="mt-4 text-accent font-bold text-2xl">
+                <span id="url-counter">0</span> <span id="video-selected-text">videos selected</span>
+            </div>
+        </header>
+
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <div class="flex flex-col md:flex-row gap-4 mb-6">
+                <input type="text" id="url-input" placeholder="Paste Pornhub/xvideos video link here..."
+                       class="flex-grow px-6 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent placeholder-gray-400 text-lg">
+                <button id="add-url-btn" class="bg-accent hover:bg-accent-dark text-white px-8 py-3 rounded-lg transition duration-300 flex items-center justify-center font-bold text-lg shadow-lg">
+                    <i class="fas fa-plus mr-3"></i>Add Link
+                </button>
+            </div>
+            <div id="url-error" class="text-red-500 text-center font-bold hidden mb-4"></div>
+            
+            <div class="flex flex-col md:flex-row gap-4 mb-6">
+                <div class="flex-grow">
+                    <label for="excel-input" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg transition duration-300 flex items-center justify-center cursor-pointer font-bold text-lg shadow-lg">
+                        <i class="fas fa-file-excel mr-3"></i>Import CSV/XLS
+                        <input type="file" id="excel-input" accept=".xlsx, .xls, .csv" class="hidden">
+                    </label>
+                </div>
+                <div id="excel-status" class="text-green-500 text-center font-bold hidden"></div>
+            </div>
+            
+            <div class="text-sm text-gray-400 text-center">
+                Platforms supported: 
+                <span class="inline-block bg-accent text-white px-3 py-1 rounded-full text-xs mr-2 font-semibold">Pornhub</span>
+                <span class="inline-block bg-accent text-white px-3 py-1 rounded-full text-xs mr-2 font-semibold">Xvideos</span>
+            </div>
+        </div>
+
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h2 class="text-3xl font-bold text-accent mb-6 text-center">Your Links to Download</h2>
+            <div id="url-list" class="mb-8">
+                <div class="text-gray-500 text-center py-12" id="empty-list-message">
+                    <i class="fas fa-link text-5xl mb-4 text-gray-600"></i>
+                    <p class="text-xl">Add Links to start downloading your favorite Porn videos!</p>
+                </div>
+            </div>
+            <button id="download-all-btn" class="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition duration-300 flex items-center justify-center disabled:bg-red-900 disabled:cursor-not-allowed font-bold text-xl shadow-lg">
+                <i class="fas fa-download mr-3"></i>Download All
+            </button>
+        </div>
+
+        <div id="results-container" class="card-dark rounded-xl shadow-xl p-8 mb-8 hidden border">
+            <h2 class="text-3xl font-bold text-accent mb-6 text-center">Download History</h2>
+            <div id="results-list" class="divide-y divide-gray-700 max-h-96 overflow-y-auto overflow-x-hidden"></div>
+        </div>
+    </div>
+    <!-- Download Results Banner -->
+    <div class="banner-desktop w-full flex justify-center my-4">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e2" data-zoneid="5677756"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+    
+    <!-- Features Section -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl" aria-labelledby="features-heading">
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h2 id="features-heading" class="text-3xl font-bold text-accent mb-6 text-center">
+                💎 Key Features of our Pornhub downloader
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="bg-gray-800 p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-700">
+                    <div class="text-4xl text-accent mb-3">
+                        <i class="fas fa-infinity" aria-hidden="true" title="Unlimited downloads"></i>
+                    </div>
+                    <h3 class="font-extrabold text-xl mb-2 text-white">Unlimited Downloads</h3>
+                    <p class="text-gray-300">Download a ton of Pornhub and Xvideos videos as you want – without any restrictions.</p>
+                </article>
+                
+                <article class="bg-gray-800 p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-700">
+                    <div class="text-4xl text-accent mb-3">
+                        <i class="fas fa-check-circle" aria-hidden="true" title="High quality"></i>
+                    </div>
+                    <h3 class="font-extrabold text-xl mb-2 text-white">Impeccable Quality</h3>
+                    <p class="text-gray-300">Get videos without logos or extra elements, for perfectly clean content.</p>
+                </article>
+                
+                <article class="bg-gray-800 p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-700">
+                    <div class="text-4xl text-accent mb-3">
+                        <i class="fas fa-file-video" aria-hidden="true" title="MP4 format"></i>
+                    </div>
+                    <h3 class="font-extrabold text-xl mb-2 text-white">Universal MP4 Format</h3>
+                    <p class="text-gray-300">Download all your videos in MP4 format, compatible with all your devices.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- Key Features Banner -->
+    <div class="banner-desktop w-full flex justify-center my-4">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e2" data-zoneid="5677758"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+    <!-- How to Download Section - Step-by-Step Guide with Images -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h3 class="text-3xl font-bold text-accent mb-6 text-center">
+                🎬 Quick Guide: how to download Videos with our Pornhub downloader
+            </h3>
+            
+            <div class="grid grid-cols-1 gap-12">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:mr-8">
+                        <img src="https://placehold.co/600x400/333333/FF5200?text=1.%0APick+a+Video" alt="Step 1: Find an adult video" class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <div class="text-5xl text-accent mb-3 font-extrabold">1</div>
+                        <h4 class="font-bold text-2xl mb-3 text-white">Pick Your Content</h4>
+                        <p class="text-gray-300 leading-relaxed">Navigate to your favorite adult video site, either Pornhub or Xvideos. Locate the video you wish to save. Make sure it's the right one before proceeding.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:mr-8 order-2 md:order-1">
+                        <img src="https://placehold.co/600x400/333333/FF5200?text=2.%0AGrab+a+Link" alt="Step 2: Copy the adult video link" class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-right order-1 md:order-2">
+                        <div class="text-5xl text-accent mb-3 font-extrabold">2</div>
+                        <h4 class="font-bold text-2xl mb-3 text-white">Grab the Video Link</h4>
+                        <p class="text-gray-300 leading-relaxed">Click the "Share" or "Copy Link" button on the video page. Ensure the URL is correctly copied to your clipboard.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row items-center bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:mr-8">
+                        <img src="https://placehold.co/600x400/333333/FF5200?text=3.%0ASave+Video" alt="Step 3: Download the adult video" class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <div class="text-5xl text-accent mb-3 font-extrabold">3</div>
+                        <h4 class="font-bold text-2xl mb-3 text-white">Paste & Save</h4>
+                        <p class="text-gray-300 leading-relaxed">Paste the copied link into the input field at the top of this page. Click 'Add Link' to add it to your list, then click "Download All" to get your videos in a flash.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Quick Guide Banner (Pawns.app) -->
+    <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
+        <div class="text-center text-white p-2 w-full">
+            <p style="font-size:15px;">
+                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                <i class="fas fa-arrow-right text-purple-300 mx-1"></i>
+            </p>
+        </div>
+        <a href="https://pawns.app/?r=grabbber" target="_blank" class="w-full flex justify-center">
+            <img src="https://cdn.pawns.app/images/b/630.jpg" alt="Pawns.app" style="max-width:100%;height:auto;">
+        </a>
+    </div>
+
+    <!-- Batch Import Feature Section -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h3 class="text-3xl font-bold text-accent mb-6 text-center">
+                ⚡ Bulk Import: Download Multiple Videos in One Click!
+            </h3>
+            <p class="text-gray-300 text-lg mb-6 text-center">
+                Grabbber offers a unique feature for advanced users: importing lists of URLs via an Excel file. Ideal for massive collections!
+            </p>
+            <div class="flex flex-col md:flex-row items-center bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+                <div class="md:w-1/2 mb-6 md:mb-0 md:mr-8">
+                    <img src="https://placehold.co/600x400/333333/FF5200?text=Import+Excel" alt="Importing videos via Excel file" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h4 class="font-bold text-2xl mb-3 text-white">How does it work?</h4>
+                    <ul class="list-disc pl-5 space-y-3 text-gray-300">
+                        <li>Prepare an Excel file (.xlsx, .xls, .csv) with a column named "URLs" containing all your video links. Example:
+                            <pre class="bg-gray-700 text-gray-200 p-2 rounded-md mt-2 text-sm whitespace-pre-wrap">
+                                URLs
+                                https://example.com/video1
+                                https://example.com/video2
+                                https://example.com/video3
+                            </pre>
+                        </li>
+                        <li>Click the "Import from Excel" button at the top of the page.</li>
+                        <li>Select your file, and Grabbber will automatically add all URLs to your download list.</li>
+                        <li>Click "Download All" and let Grabbber do the work!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bulk Import Banner (Pawns.app) -->
+    <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
+        <div class="text-center text-white p-2 w-full">
+            <p style="font-size:15px;">
+                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                <i class="fas fa-arrow-right text-purple-300 mx-1"></i>
+                <a href="https://pawns.app/?r=grabbber" target="_blank" class="text-purple-300 font-bold hover:underline">Pawns.app</a>
+            </p>
+        </div>
+        <a href="https://pawns.app/?r=grabbber" target="_blank" class="w-full flex justify-center">
+            <img src="https://cdn.pawns.app/images/b/630.jpg" alt="Pawns.app" style="max-width:100%;height:auto;">
+        </a>
+    </div>
+
+    <!-- Popular Search Terms Section -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h3 class="text-3xl font-bold text-accent mb-6 text-center">
+                🔥 Trending Topics
+            </h3>
+            <p class="text-gray-300 text-lg mb-6 text-center">
+                Our Pornhub downloader is used for:
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">XXX videos</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">adult movies</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">download porn HD</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">free videos</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">Pornhub downloader</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">Xvideos download</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">adult video downloader</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">explicit content</span>
+                <span class="bg-gray-700 text-gray-200 px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition-colors duration-200 cursor-pointer">X-rated videos</span>
+            </div>
+        </div>
+    </section>
+    <!-- Popular Search Terms Banner -->
+    <div class="banner-desktop w-full flex justify-center my-4">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e2" data-zoneid="5677760"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+    
+    <!-- FAQ Section -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="card-dark rounded-xl shadow-xl p-8 mb-8 border">
+            <h3 class="text-3xl font-bold text-accent mb-6 text-center">
+                ❓ Common Questions
+            </h3>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">Do I have to pay to use Grabbber for downloading Pornhub videos?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">No, our service is completely free. You can download as many Pornhub videos as you want, the same for Xvideos without any payment.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">Can I download any Porn video with this tool?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">Yes, our Pornhub downloader is designed to handle most public adult video content. You can usually download videos from popular sites like Pornhub and Xvideos by simply pasting the link. Access to private videos depends on the video's privacy settings and your permissions.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">What quality are the downloaded Pornhub videos?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">Our service allows for Pornhub video download in high definition. You can expect to download videos in HD quality (up to 1080p if available), ensuring crisp and clear playback on your device.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">How many Pornhub videos can I download at once with our Pornhub downloader?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">There is no limit! You can download as many adult videos as you want at once from Pornhub and Xvideos. However, for optimal performance, we recommend adding a maximum of 10 video URLs, either manually or via an Excel file.</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">What format will my downloaded Pornhub videos be in?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">All videos are saved in the widely compatible MP4 format. This means you can easily play your downloaded video files on almost any device, from your phone to your computer, without needing special software.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-700 rounded-lg overflow-hidden shadow-sm">
+                    <button class="accordion-button w-full px-6 py-4 text-left font-medium flex justify-between items-center bg-gray-800 hover:bg-gray-700 transition-colors duration-200">
+                        <span class="text-lg text-white">Is it necessary to have an account to use this Pornhub downloader?</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="accordion-content px-6 py-4 bg-gray-900 text-gray-300">
+                        <p class="text-base">No, you don't need to create an account or log in to use our service. Just paste as many video URLs as you want and download.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Common Questions Banner -->
+    <div class="banner-desktop w-full flex justify-center my-4">
+        <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+        <ins class="eas6a97888e2" data-zoneid="5677764"></ins>
+        <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+
+    <!-- Bannière centrale rotative -->
+    <div class="center-ad-container" id="centerAdContainer">
+        <div class="center-ad-timer" id="centerAdTimer">10s</div>
+        <button class="center-ad-close" id="centerAdClose">×</button>
+        <div class="center-ad-content" id="centerAdContent"></div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            const centerAdContainer = document.getElementById('centerAdContainer');
+            const centerAdContent = document.getElementById('centerAdContent');
+            const centerAdClose = document.getElementById('centerAdClose');
+            const centerAdTimer = document.getElementById('centerAdTimer');
+
+            // 1. Nouveau contenu premium Grabbber (sera affiché en premier)
+            const grabbberPremiumBanner = `
+            <div class="main-container">
+                <div class="left-section">
+                    <h1 class="text-3xl font-bold mb-3">The #1 Video<br>Downloader</h1>
+                    <p class="text-base mb-6">Download videos<br>as you browse</p>
+                    <span id="grabbberTextDisplay" class="text-white text-3xl font-bold mb-4">Grabbber</span>
+                    <div class="flex flex-col space-y-2 items-center">
+                        <i class="fab fa-youtube social-icon"></i>
+                        <i class="fab fa-instagram social-icon"></i>
+                        <i class="fab fa-tiktok social-icon"></i>
+                        <span class="text-white text-base">and more</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <h2 class="text-xl font-semibold mb-3 text-gray-800">Get Full Ownership of Grabbber with One Payment.</h2>
+                    <p class="text-sm text-gray-700 mb-4">
+                        Download as many videos as you want from Youtube, TikTok, IG, Pornhub and Xvideos. Only one time payment, no current fees along with a step by step video showing how to set it on your pc.
+                    </p>
+                    <a href="payment.html"><button class="get-it-for-life-button">Get it for life</button></a>
+                </div>
+            </div>
+            `;
+            // 2. Exoclic Banner
+            const exoclicBanner = `<div id="exoclice-ad-container"></div>`;
+            // 3. Pawn.app Banner
+            const pawnBanner = `<div>
+                <div class="text-center text-gray-700 p-2">
+                    <p>
+                        Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3 
+                        <i class="fas fa-arrow-right text-purple-600 mx-1"></i>
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="text-purple-600 font-bold hover:underline">Pawns.app</a>
+                    </p>
+                </div>
+                <a href="https://pawns.app/?r=grabbber" target="_blank">
+                    <img src="https://cdn.pawns.app/images/b/300.jpg" alt="Pawns.app">
+                </a>
+            </div>`;
+            const adContents = [grabbberPremiumBanner, exoclicBanner, pawnBanner];
+            let currentAdIndex = 0;
+            let timerInterval;
+            let secondsLeft = 10;
+            let adInterval;
+            function showAd() {
+                secondsLeft = 10;
+                centerAdTimer.textContent = secondsLeft + 's';
+                centerAdClose.style.opacity = '0';
+                centerAdContent.innerHTML = adContents[currentAdIndex];
+                if (currentAdIndex === 1) {
+                    const script1 = document.createElement('script');
+                    script1.async = true;
+                    script1.type = 'application/javascript';
+                    script1.src = 'https://a.magsrv.com/ad-provider.js';
+                    document.getElementById('exoclice-ad-container').appendChild(script1);
+                    const ins = document.createElement('ins');
+                    ins.className = 'eas6a97888e2';
+                    ins.setAttribute('data-zoneid', '5677752');
+                    document.getElementById('exoclice-ad-container').appendChild(ins);
+                    const script2 = document.createElement('script');
+                    script2.textContent = "(AdProvider = window.AdProvider || []).push({\"serve\": {}})";
+                    document.getElementById('exoclice-ad-container').appendChild(script2);
+                }
+                centerAdContainer.style.display = 'block';
+                currentAdIndex = (currentAdIndex + 1) % adContents.length;
+                clearInterval(timerInterval);
+                timerInterval = setInterval(function() {
+                    secondsLeft--;
+                    centerAdTimer.textContent = secondsLeft + 's';
+                    if (secondsLeft <= 0) {
+                        centerAdClose.style.opacity = '1';
+                        clearInterval(timerInterval);
+                        centerAdTimer.style.display = 'none';
+                    }
+                }, 1000);
+            }
+            function closeAd() {
+                centerAdContainer.style.display = 'none';
+                centerAdTimer.style.display = 'block';
+                clearInterval(timerInterval);
+            }
+            centerAdClose.addEventListener('click', closeAd);
+            setTimeout(function() {
+                showAd();
+                adInterval = setInterval(function() {
+                    if (centerAdContainer.style.display === 'none') {
+                        showAd();
+                    } else {
+                        closeAd();
+                        showAd();
+                    }
+                }, 60000);
+            }, 60000);
+        });
+    </script>
+    <style>
+        .center-ad-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 365px;
+            height: 410px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: none;
+            overflow: hidden;
+        }
+        .center-ad-timer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 12px;
+            z-index: 2001;
+        }
+        .center-ad-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 2001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .center-ad-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script>
+        // JavaScript for FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            const accordionContents = document.querySelectorAll('.accordion-content');
+
+            // Fermer toutes les réponses au chargement
+            accordionContents.forEach(content => {
+                content.classList.remove('open');
+                content.style.maxHeight = '0';
+            });
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+
+                    // Toggle la réponse
+                    if (content.classList.contains('open')) {
+                        content.classList.remove('open');
+                        content.style.maxHeight = '0';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        content.classList.add('open');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            window.toggleMobileMenu = function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            // Language dropdown functionality
+            const langBtn = document.getElementById('langBtn');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentLang = document.getElementById('currentLang');
+            const langBtnMobile = document.getElementById('langBtnMobile');
+            const langDropdownMobile = document.getElementById('langDropdownMobile');
+            const currentLangMobile = document.getElementById('currentLangMobile');
+
+            function setupLanguageDropdown(button, dropdown, currentLangSpan) {
+                button.addEventListener('click', function() {
+                    dropdown.classList.toggle('hidden');
+                });
+
+                dropdown.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        currentLangSpan.textContent = this.dataset.lang.toUpperCase().substring(0, 2); // Display first two letters
+                        // Here you would implement the actual language change logic
+                        console.log('Language changed to:', this.dataset.lang);
+                        dropdown.classList.add('hidden');
+                    });
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', function(event) {
+                    if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
+            }
+
+            setupLanguageDropdown(langBtn, langDropdown, currentLang);
+            setupLanguageDropdown(langBtnMobile, langDropdownMobile, currentLangMobile);
+
+            // --- Grabbber Download Logic (copied & adapted from pornhub-xvideos-video-downloader.html) ---
+            const urlInput = document.getElementById('url-input');
+            const addUrlBtn = document.getElementById('add-url-btn');
+            const urlError = document.getElementById('url-error');
+            const urlList = document.getElementById('url-list');
+            const downloadAllBtn = document.getElementById('download-all-btn');
+            const urlCounter = document.getElementById('url-counter');
+            const emptyListMessage = document.getElementById('empty-list-message');
+            const resultsContainer = document.getElementById('results-container');
+            const resultsList = document.getElementById('results-list');
+            const excelInput = document.getElementById('excel-input');
+            const excelStatus = document.getElementById('excel-status');
+
+            let urls = [];
+            let isDownloading = false;
+
+            function updateUrlCounter() {
+                urlCounter.textContent = urls.length;
+                downloadAllBtn.disabled = urls.length === 0 || isDownloading;
+                if (urls.length > 0) {
+                    emptyListMessage.classList.add('hidden');
+                } else {
+                    emptyListMessage.classList.remove('hidden');
+                }
+            }
+
+            function validateUrl(url) {
+                if (!url) return false;
+                const supported = ["pornhub.com", "xvideos.com"];
+                return supported.some(domain => url.includes(domain));
+            }
+
+            function addUrlToList(url) {
+                url = url.trim();
+                if (!validateUrl(url)) {
+                    urlError.textContent = 'Only Pornhub and Xvideos URLs are allowed.';
+                    urlError.classList.remove('hidden');
+                    return;
+                }
+                if (urls.includes(url)) {
+                    urlError.textContent = 'This URL has already been added.';
+                    urlError.classList.remove('hidden');
+                    return;
+                }
+                urlError.classList.add('hidden');
+                urls.push(url);
+                const urlItem = document.createElement('div');
+                urlItem.className = 'flex items-center justify-between bg-gray-800 p-3 rounded-lg mb-2 shadow-sm border border-gray-700';
+                urlItem.innerHTML = `
+                    <span class="text-gray-200 text-sm truncate mr-4">${url}</span>
+                    <button class="remove-url-btn text-red-500 hover:text-red-700 transition-colors duration-200" data-url="${url}" aria-label="Remove this URL">
+                        <i class="fas fa-times-circle text-xl"></i>
+                    </button>
+                `;
+                urlList.appendChild(urlItem);
+                urlInput.value = '';
+                updateUrlCounter();
+            }
+
+            addUrlBtn.addEventListener('click', () => {
+                addUrlToList(urlInput.value);
+            });
+            urlInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addUrlToList(urlInput.value);
+                }
+            });
+            urlList.addEventListener('click', (e) => {
+                if (e.target.closest('.remove-url-btn')) {
+                    const button = e.target.closest('.remove-url-btn');
+                    const urlToRemove = button.dataset.url;
+                    urls = urls.filter(url => url !== urlToRemove);
+                    button.closest('div').remove();
+                    updateUrlCounter();
+                }
+            });
+
+            // Excel import (keep as before, but only add valid URLs)
+            excelInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    excelStatus.textContent = 'Reading file...';
+                    excelStatus.classList.remove('hidden');
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, { type: 'array' });
+                            const firstSheetName = workbook.SheetNames[0];
+                            const worksheet = workbook.Sheets[firstSheetName];
+                            const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                            let newUrlsCount = 0;
+                            if (json.length > 0) {
+                                const headerRow = json[0];
+                                const urlColumnIndex = headerRow.findIndex(header => header.trim().toLowerCase() === 'urls');
+                                if (urlColumnIndex === -1) {
+                                    excelStatus.textContent = 'Error: "URLs" column not found in the Excel file.';
+                                    excelStatus.classList.remove('hidden');
+                                    excelStatus.classList.add('text-red-500');
+                                    excelInput.value = '';
+                                    return;
+                                }
+                                for (let i = 1; i < json.length; i++) {
+                                    const row = json[i];
+                                    if (Array.isArray(row) && row.length > urlColumnIndex) {
+                                        const url = String(row[urlColumnIndex] || '').trim();
+                                        if (validateUrl(url) && !urls.includes(url)) {
+                                            urls.push(url);
+                                            newUrlsCount++;
+                                            const urlItem = document.createElement('div');
+                                            urlItem.className = 'flex items-center justify-between bg-gray-800 p-3 rounded-lg mb-2 shadow-sm border border-gray-700';
+                                            urlItem.innerHTML = `
+                                                <span class="text-gray-200 text-sm truncate mr-4">${url}</span>
+                                                <button class="remove-url-btn text-red-500 hover:text-red-700 transition-colors duration-200" data-url="${url}" aria-label="Remove this URL">
+                                                    <i class="fas fa-times-circle text-xl"></i>
+                                                </button>
+                                            `;
+                                            urlList.appendChild(urlItem);
+                                        }
+                                    }
+                                }
+                            }
+                            excelStatus.textContent = `${newUrlsCount} URLs added successfully from Excel.`;
+                            updateUrlCounter();
+                        } catch (error) {
+                            console.error('Error processing Excel file:', error);
+                            excelStatus.textContent = 'Error processing Excel file.';
+                            excelStatus.classList.remove('hidden');
+                            excelStatus.classList.add('text-red-500');
+                        } finally {
+                            excelInput.value = '';
+                        }
+                    };
+                    reader.onerror = function(error) {
+                        console.error('Error reading file:', error);
+                        excelStatus.textContent = 'Error reading file.';
+                        excelStatus.classList.remove('hidden');
+                        excelStatus.classList.add('text-red-500');
+                        excelInput.value = '';
+                    };
+                    reader.readAsArrayBuffer(file);
+                }
+            });
+
+            // Load SheetJS (xlsx.full.min.js) for Excel import
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js';
+            script.onload = () => console.log('SheetJS loaded');
+            script.onerror = () => {
+                excelStatus.textContent = 'Error loading Excel library. Please try again.';
+                excelStatus.classList.remove('hidden');
+                excelStatus.classList.add('text-red-500');
+            };
+            document.head.appendChild(script);
+
+            // --- Download logic (real, not simulated) ---
+            function saveDownloadState(url, state, downloadId = null, fileName = null) {
+                const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                downloads[url] = {
+                    state: state,
+                    downloadId: downloadId,
+                    fileName: fileName,
+                    timestamp: new Date().getTime()
+                };
+                localStorage.setItem('downloads', JSON.stringify(downloads));
+            }
+            function getDownloadState(url) {
+                const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                return downloads[url] || null;
+            }
+            function createDownloadItem(url, status) {
+                let statusHTML = '';
+                if (status === 'downloading') {
+                    statusHTML = `
+                        <span class="text-yellow-500"><i class="fas fa-spinner fa-spin mr-2"></i>Downloading...</span>
+                    `;
+                } else if (status === 'success') {
+                    const downloadState = getDownloadState(url);
+                    statusHTML = `
+                        <div class="flex flex-col items-start w-full">
+                            <span class='mt-1 text-green-400 font-semibold'>Downloaded successfully</span>
+                            <button onclick="window.open('https://gabbber-mobile.onrender.com/download/${downloadState.downloadId}/${downloadState.fileName}', '_blank')" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                                <i class='fas fa-external-link-alt mr-2'></i>Open
+                            </button>
+                        </div>
+                    `;
+                } else if (status === 'error') {
+                    statusHTML = `
+                        <span class="text-red-500 flex items-center">
+                            <i class="fas fa-times-circle mr-2"></i>Download failed
+                        </span>
+                    `;
+                }
+                const item = document.createElement('div');
+                item.className = 'flex flex-col items-start p-3 bg-gray-800 rounded-lg mb-2 shadow-sm border border-gray-700';
+                item.setAttribute('data-url', url);
+                item.innerHTML = `
+                    <span class="text-gray-200 truncate mb-1 text-xs">${url}</span>
+                    ${statusHTML}
+                `;
+                return item;
+            }
+            function loadSavedDownloads() {
+                const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+                if (Object.keys(downloads).length > 0) {
+                    resultsContainer.classList.remove('hidden');
+                }
+                for (const [url, downloadData] of Object.entries(downloads)) {
+                    const downloadItem = createDownloadItem(url, downloadData.state);
+                    resultsList.appendChild(downloadItem);
+                }
+            }
+            async function pollDownloadStatus(url, downloadId, attempts = 0) {
+                const maxAttempts = 60;
+                const interval = 2000;
+                if (attempts >= maxAttempts) {
+                    saveDownloadState(url, 'error');
+                    const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                    if (resultItem) {
+                        resultItem.replaceWith(createDownloadItem(url, 'error'));
+                    }
+                    return false;
+                }
+                try {
+                    const response = await fetch(`https://gabbber-mobile.onrender.com/download/status/${downloadId}`);
+                    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                    const statusData = await response.json();
+                    const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                    if (statusData.status === 'completed' && statusData.file_name) {
+                        saveDownloadState(url, 'success', downloadId, statusData.file_name);
+                        if (resultItem) {
+                            resultItem.replaceWith(createDownloadItem(url, 'success'));
+                            window.open(`https://gabbber-mobile.onrender.com/download/${downloadId}/${statusData.file_name}`, '_self');
+                        }
+                        return true;
+                    } else if (statusData.status === 'error') {
+                        saveDownloadState(url, 'error');
+                        if (resultItem) {
+                            resultItem.replaceWith(createDownloadItem(url, 'error'));
+                        }
+                        return false;
+                    } else {
+                        await new Promise(resolve => setTimeout(resolve, interval));
+                        return pollDownloadStatus(url, downloadId, attempts + 1);
+                    }
+                } catch (error) {
+                    await new Promise(resolve => setTimeout(resolve, interval));
+                    return pollDownloadStatus(url, downloadId, attempts + 1);
+                }
+            }
+            async function downloadVideos(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                if (urls.length === 0 || isDownloading) return;
+                isDownloading = true;
+                downloadAllBtn.disabled = true;
+                addUrlBtn.disabled = true;
+                urlInput.disabled = true;
+                excelInput.disabled = true;
+                resultsList.innerHTML = '';
+                resultsContainer.classList.remove('hidden');
+                const urlsToDownload = [...urls];
+                urls = [];
+                urlList.innerHTML = `<div class="text-gray-500 text-center py-12" id="empty-list-message">
+                                        <i class="fas fa-link text-5xl mb-4 text-gray-600"></i>
+                                        <p class="text-xl">Add Links to start downloading your favorite adult videos!</p>
+                                    </div>`;
+                updateUrlCounter();
+                for (let url of urlsToDownload) {
+                    const downloadItem = createDownloadItem(url, 'downloading');
+                    resultsList.appendChild(downloadItem);
+                }
+                for (let url of urlsToDownload) {
+                    try {
+                        saveDownloadState(url, 'downloading');
+                        const response = await fetch('https://gabbber-mobile.onrender.com/download', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ url: url })
+                        });
+                        const data = await response.json();
+                        if (response.ok && data.download_id) {
+                            await pollDownloadStatus(url, data.download_id);
+                        } else {
+                            saveDownloadState(url, 'error');
+                            const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                            if (resultItem) {
+                                resultItem.replaceWith(createDownloadItem(url, 'error'));
+                            }
+                        }
+                    } catch (error) {
+                        saveDownloadState(url, 'error');
+                        const resultItem = resultsList.querySelector(`[data-url="${url}"]`);
+                        if (resultItem) {
+                            resultItem.replaceWith(createDownloadItem(url, 'error'));
+                        }
+                    }
+                }
+                isDownloading = false;
+                downloadAllBtn.disabled = false;
+                addUrlBtn.disabled = false;
+                urlInput.disabled = false;
+                excelInput.disabled = false;
+            }
+            downloadAllBtn.addEventListener('click', downloadVideos);
+            // Load previous downloads
+            loadSavedDownloads();
+            updateUrlCounter();
+        });
+        </script>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,zh-CN,hi,es,fr,ar,bn,pt,ru,ja',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-500 text-center py-6 mt-12 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between">
+          <!-- Logo Grabbber à gauche -->
+          <div class="flex items-center justify-center md:justify-start mb-4 md:mb-0">
+            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white" role="img" aria-label="Grabbber Logo">
+              <i class="fas fa-hand-pointer text-xl" aria-hidden="true"></i>
+            </div>
+            <span class="ml-2 text-xl font-bold text-white">Grabbber</span>
+          </div>
+          <!-- Liens nav sur une ligne -->
+          <div class="flex flex-wrap justify-center items-center gap-4 w-full md:w-auto">
+            <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300 font-bold text-sm">Get Paid</a>
+            <a href="https://grabbber.site/" class="text-gray-400 hover:text-accent transition-colors duration-200 text-sm">Similar Downloaders</a>
+            <a href="video-downloader-extension.html" class="text-gray-400 hover:text-accent transition-colors duration-200 text-sm">Buy Grabbber Extension</a>
+            <a href="terms.html" class="text-gray-400 hover:text-accent transition-colors duration-200 text-sm">Terms</a>
+          </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+          <p class="text-sm">&copy; 2025 Grabbber. All rights reserved.</p>
+        </div>
+      </footer>
+
+</body>
+</html>
