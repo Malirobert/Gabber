@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Video Downloader - Save Facebook Videos</title>
-    <meta name="description" content="Download Facebook videos online in HD and save them directly to your device for free. Grabbber makes it easy to download Facebook videos from Facebook watch, any public page, group, or profile—no software or registration needed.">
-    <meta name="keywords" content="facebook video downloader, download facebook videos, save facebook video, facebook downloader, fb video downloader, facebook video online, facebook video download hd, facebook video download 4k, grabbber">
+    <meta name="description" content="Download Facebook videos in HD for free with Grabbber.">
+    <meta name="keywords" content="facebook video downloader, download facebook videos, grabbber">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Grabbber">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Facebook Video Downloader - Save Facebook Video">
-    <meta property="og:description" content="Download Facebook videos online in HD and save them directly to your device for free. Grabbber makes it easy to download Facebook videos from Facebook watch, any public page, group, or profile—no software or registration needed.">
+    <meta property="og:title" content="Facebook Video Downloader">
+    <meta property="og:description" content="Download Facebook videos in HD for free with Grabbber.">
     <meta property="og:image" content="https://grabbber.site/images/grabbber.jpg">
     <meta property="og:url" content="https://grabbber.site/facebook-video-downloader">
     <meta property="og:type" content="website">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Facebook Video Downloader - Save Facebook Videos | Grabbber">
-    <meta name="twitter:description" content="Download Facebook videos online in HD and save them directly to your device for free. Grabbber makes it easy to download Facebook videos from facebook watch any public page, group, or profile—no software or registration needed.">
+    <meta name="twitter:title" content="Facebook Video Downloader">
+    <meta name="twitter:description" content="Download Facebook videos in HD for free with Grabbber.">
     <meta name="twitter:image" content="https://grabbber.site/images/grabbber.jpg">
 
     <link rel="canonical" href="https://grabbber.site/facebook-video-downloader">
@@ -252,7 +252,6 @@
       display: none !important;
     }
   }
-  /* Pour éviter que l'image soit trop grande sur mobile */
   .banner-mobile img, .banner-mobile ins {
     max-width: 100%;
     height: auto;
@@ -351,6 +350,56 @@
             background-color: #550099;
         }
     </style>
+
+    <style>
+    /* ... existing code ... */
+    .earn-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        background: #fff; /* blanc pur */
+        color: #222; /* texte noir */
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px 16px;
+        position: absolute;
+        z-index: 100;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: opacity 0.2s;
+        font-size: 0.98em;
+        white-space: pre-line;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        max-width: 320px;
+        line-height: 1.4;
+    }
+    .earn-money-btn.navbar .earn-tooltip {
+        top: 120%;
+        bottom: auto;
+        color: #222;
+    }
+    .earn-money-btn:hover .earn-tooltip,
+    .earn-money-btn:focus .earn-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+    </style>
+
+    <style>
+    /* ... existing code ... */
+    .earn-money-btn.navbar a {
+        background: linear-gradient(to right, #a855f7, #ec4899, #f59e42) !important;
+        color: #fff !important;
+        font-weight: bold !important;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        border-radius: 0.5rem;
+        transition: background 0.2s, color 0.2s;
+    }
+    .earn-money-btn.navbar a:hover, .earn-money-btn.navbar a:focus {
+        background: linear-gradient(to right, #a855f7, #ec4899, #f59e42) !important;
+        color: #fff !important;
+    }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <div id="google_translate_element" style="position: absolute; top: -1000px; left: -1000px;"></div>
@@ -368,11 +417,9 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <div class="relative group">
-                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Pawns.app</a>
-                        <div class="absolute hidden group-hover:block bg-white border border-gray-200 p-2 rounded-md shadow-lg z-50 w-64" style="transform: translateX(-25%);">
-                            <p class="text-center text-gray-700 text-sm">
-                                Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3
-                            </p>
+                        <div class="relative earn-money-btn navbar" style="display:inline-block;">
+                            <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-4 py-2 rounded-md hover:shadow-xl transition duration-300">Earn Income</a>
+                            <span class="earn-tooltip">Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income has never been that easy with Pawns.app. Sign up now and get $3!</span>
                         </div>
                     </div>
                     
@@ -401,7 +448,7 @@
                 </div>
                 <div class="md:hidden flex items-center">
                     <div class="relative group">
-                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-3 py-1.5 rounded-md hover:shadow-xl transition duration-300 text-sm mr-2">Pawns.app</a>
+                        <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-3 py-1.5 rounded-md hover:shadow-xl transition duration-300 text-sm mr-2">Earn Income</a>
                         <div class="absolute hidden group-hover:block bg-white text-gray-700 p-2 rounded-md shadow-lg z-50 w-64 right-0 mt-2">
                             <p class="text-center text-sm">
                                 Turn your free time into $150-$300/month playing games and sharing your network. Earning passive income never been that easy with Pawns.app. Sign up now and get $3
@@ -454,7 +501,7 @@
                 <!-- Le contenu existant reste inchangé -->
                 <header class="text-center mb-8">
                     <h1 class="text-4xl font-bold text-blue-600 mb-2">Facebook Video Downloader</h1>
-                    <p class="text-lg text-gray-600">Download many Facebook videos at once</p>
+                    <p class="text-lg text-gray-600">Download Facebook videos online in HD </p>
                     <div class="mt-4 text-blue-800 font-medium">
                         <span id="url-counter">0</span> <span id="video-selected-text">videos selected</span>
                     </div>
@@ -504,7 +551,7 @@
                     <div id="results-list" class="divide-y divide-gray-200 max-h-80 overflow-y-auto"></div>
                 </div>
             </div>
-            <div class="banner-mobile">
+            <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
             <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
  <ins class="eas6a97888e2" data-zoneid="5654110"></ins> 
  <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
@@ -536,7 +583,7 @@
                       </div>
                   </div>
               </section>
-            <div class="banner-mobile">
+            <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
               <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
  <ins class="eas6a97888e2" data-zoneid="5654118"></ins> 
  <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
@@ -568,7 +615,7 @@
                     </div>
                 </div>
             </div>
-            <div class="banner-mobile">
+            <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
             <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
  <ins class="eas6a97888e2" data-zoneid="5654120"></ins> 
  <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
@@ -577,7 +624,7 @@
             <!-- Video Demo Container -->
             <div class="container mx-auto px-4 py-6 max-w-4xl">
                 <div class="bg-white rounded-lg shadow-lg p-8 mb-8">  <!-- Padding augmenté de p-6 à p-8 -->
-                    <h3 class="text-xl font-semibold text-blue-600 text-center mb-6">Here is how to download multiple Facebook videos at once with Grabbber</h3>
+                    <h3 class="text-xl font-semibold text-blue-600 text-center mb-6">Watch how our Facebook Video Downloader download many Facebook videos at once</h3>
                     
                     <div class="aspect-w-16 aspect-h-9 mb-8">  <!-- Marge inférieure augmentée -->
                         <div class="w-full h-0 pb-[56.25%] relative bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer" id="video-demo-container" style="min-height: 350px;" aria-label="Video demonstration of how to download multiple videos with Grabbber" loading="lazy">
@@ -595,7 +642,7 @@
                             
                             videoContainer.addEventListener('click', function() {
                                 // Dans le script de la vidéo démo
-                                this.innerHTML = `<iframe class="absolute inset-0 w-full h-full" style="min-height: 350px;" src="videos/Grabbber_mobile_demo.mp4" title="Video demonstration of Grabbber multi-download feature" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                                this.innerHTML = `<iframe class="absolute inset-0 w-full h-full" style="min-height: 350px;" src="videos/How-to-download-facebook-videos.mp4" title="Video demonstration of Grabbber multi-download feature" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                                 // Note: Replace 'about:blank' with your actual video URL
                             });
                         });
@@ -729,7 +776,7 @@
                 </div>
             </div>
 
-            <div class="banner-mobile">
+            <div class="banner-mobile mx-auto flex flex-col items-center justify-center" style="margin-top:16px;max-width:350px;">
             <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
  <ins class="eas6a97888e2" data-zoneid="5654128"></ins> 
  <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
@@ -1265,13 +1312,12 @@
             <div class="mx-auto text-center md:text-left">
                 <h3 class="text-lg font-semibold mb-4">Legal</h3>
                 <ul class="space-y-2">
-                    <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a></li>
                     <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Terms</a></li>
                     <li><a href="mailto:contact@grabbber.site" class="text-gray-400 hover:text-white transition">robertomaliro20@gmail.com</a></li>
                 </ul>
             </div>
             <div class="text-center md:text-right mt-8 md:mt-0">
-                <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Pawns.app</a>
+                <a href="https://pawns.app/?r=grabbber" target="_blank" class="animate-gradient-x bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 text-white px-6 py-3 rounded-md text-lg font-semibold hover:shadow-xl transition duration-300 inline-block">Earn Income</a>
             </div>
         </div>
         <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
@@ -1625,3 +1671,4 @@ const grabbberPremiumBanner = `
 
 </body>
 </html>
+
